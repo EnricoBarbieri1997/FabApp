@@ -1,6 +1,6 @@
-#Fri Jun 15 10:35:45 CEST 2018
+#Fri Jun 15 23:30:43 CEST 2018
 org.modelio.module.propertytab.JavaDesigner\ v3.7.01\ GModule\ @file\:///C\:/Users/Simo/.modelio/3.7/modules/JavaDesigner_3.7.01/JavaDesigner_3.7.01.jmdac\ runtime\ module_.org.modelio.diagram.perspective.parentId=app.ui.ext_com.partstack.right
-org.modelio.module.propertytab.JavaDesigner\ v3.7.01\ GModule\ @file\:///C\:/Users/Simo/.modelio/3.7/modules/JavaDesigner_3.7.01/JavaDesigner_3.7.01.jmdac\ runtime\ module_.org.modelio.app.ui.model.perspective.parentId=org.modelio.app.bottom.parts
 org.modelio.module.propertytab.JavaDesigner\ v3.7.01\ GModule\ @file\:///C\:/Users/Simo/.modelio/3.7/modules/JavaDesigner_3.7.01/JavaDesigner_3.7.01.jmdac\ runtime\ module_.org.modelio.full.perspective.parentId=app.ui.ext_com.partstack.bottom
+org.modelio.module.propertytab.JavaDesigner\ v3.7.01\ GModule\ @file\:///C\:/Users/Simo/.modelio/3.7/modules/JavaDesigner_3.7.01/JavaDesigner_3.7.01.jmdac\ runtime\ module_.org.modelio.app.ui.model.perspective.parentId=org.modelio.app.bottom.parts
 org.modelio.diagram.editor.OpenedDiagrams0='fabapp Class diagram' {3eb3fdf4-a33f-46fd-bf93-e61ad47455db} Standard.ClassDiagram
 org.modelio.module.propertytab.JavaDesigner\ v3.7.01\ GModule\ @file\:///C\:/Users/Simo/.modelio/3.7/modules/JavaDesigner_3.7.01/JavaDesigner_3.7.01.jmdac\ runtime\ module_.org.modelio.development.perspective.parentId=app.ui.ext_com.partstack.bottom

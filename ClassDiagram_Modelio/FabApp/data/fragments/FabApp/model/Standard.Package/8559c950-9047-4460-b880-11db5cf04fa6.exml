@@ -29,6 +29,14 @@
         <COMPID name="Album" mc="Standard.Class" uid="de242935-1649-4609-a331-7ba76043c7c5"/>
         <COMPID name="PostedPhotos" mc="Standard.Class" uid="e98bd121-c074-48c9-8d90-d8d53530b5de"/>
         <COMPID name="MyPhotos" mc="Standard.Class" uid="939db19b-d176-4290-b4a7-359e7620e398"/>
+        <COMPID name="FlyweightFactory" mc="Standard.Class" uid="cd5452c2-3271-480e-a544-971423e2803d"/>
+        <COMPID name="Flyweight" mc="Standard.Class" uid="39acb937-473e-4679-a4e3-ee1d730f7e1a"/>
+        <COMPID name="SingleUserFactory" mc="Standard.Class" uid="1b7b2620-0bac-4575-b340-f217a9fdbb88"/>
+        <COMPID name="GroupFactory" mc="Standard.Class" uid="1a1201b4-b002-4696-b73b-4f96bb706c79"/>
+        <COMPID name="PhotoFactory" mc="Standard.Class" uid="ba406c67-7bd1-4d10-a077-79624f850ebc"/>
+        <COMPID name="Prototype" mc="Standard.Class" uid="7e627634-cd8d-4fec-a74f-f832e910cc1c"/>
+        <COMPID name="PrototypeManager" mc="Standard.Class" uid="4664b6f2-1a6e-4981-ad87-e5a3d6c3a8a2"/>
+        <COMPID name="EmojiFactory" mc="Standard.Class" uid="4d2ff418-53c7-4f31-8524-0b2432124d79"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="fabapp Class diagram" mc="Standard.ClassDiagram" uid="3eb3fdf4-a33f-46fd-bf93-e61ad47455db"/>

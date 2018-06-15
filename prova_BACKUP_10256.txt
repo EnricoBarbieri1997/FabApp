@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-Ciao SImo
-=======
-ciao barbuz
->>>>>>> 39854fe6b1f24bf1c9a492b0f1567f50509470bc
