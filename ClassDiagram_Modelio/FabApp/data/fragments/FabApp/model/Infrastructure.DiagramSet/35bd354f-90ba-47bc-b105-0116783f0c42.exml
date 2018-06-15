@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="FabApp" version="4">
+  <OBJECT>
+    <ID name="FabApp" mc="Infrastructure.DiagramSet" uid="35bd354f-90ba-47bc-b105-0116783f0c42"/>
+    <PID name="FabApp" mc="Standard.Project" uid="001b8e21-062c-42ed-9fc0-c6a361889d23"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[FabApp]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
