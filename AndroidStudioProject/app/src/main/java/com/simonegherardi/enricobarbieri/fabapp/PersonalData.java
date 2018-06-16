@@ -1,7 +1,7 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
 public class PersonalData {
-    protected int iD;
-    protected String name;
-    protected String surname;
+    protected String phone;
+    protected String email;
+    protected String username;
 }
