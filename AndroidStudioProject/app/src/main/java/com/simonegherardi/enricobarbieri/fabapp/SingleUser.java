@@ -1,15 +1,18 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
+import java.util.ArrayList;
+
 public class SingleUser extends User {
     protected PersonalData myInfo;
-    protected Album myAlbum;
+    protected ArrayList<SingleUser> followedUsers;
+    protected ArrayList<Group> followedGroups;
     protected boolean isPrivate;
+    protected int iD;
 
     public SingleUser()
     {
         super();
         this.myInfo = new PersonalData();
-        this.myAlbum = new Album();
         this.isPrivate = false;
     }
 
@@ -22,4 +25,16 @@ public class SingleUser extends User {
     {
         resource.setReported(true);
     }
+
+    public void follow(SingleUser newfollowed)
+    {
+        followedUsers.add(newfollowed);
+    }
+
+    public void follow(Group newfollowed)
+    {
+        followedGroups.add(newfollowed);
+    }
+
+
 }

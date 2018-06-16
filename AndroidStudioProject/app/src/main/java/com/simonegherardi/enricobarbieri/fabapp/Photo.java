@@ -1,14 +1,36 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
-public class Photo extends Resource {
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
+public class Photo extends Resource implements Comparable<Photo> {
+
+    protected Bitmap img;
     protected int idPhoto;
     protected int likes;
     protected int iDPhotographer;
-    protected int iDOwner;
+    protected int iDPhotograpghed;
 
-    public void addTag (Tag newTag)
+
+    public Photo(String pathname, int iDPhotographer, int idPhotographed)
     {
+        super();
+        this.iDPhotographer=iDPhotographer;
+        this.iDPhotograpghed=idPhotographed;
+    }
 
+
+    @Override
+    public int compareTo(@NonNull Photo o) {
+        if (this.idPhoto == o.idPhoto)
+        {
+            return 0;
+        } else if (this.idPhoto < o.idPhoto)
+        {
+            return -1;
+        } else
+        {
+            return 1;
+        }
     }
 }
