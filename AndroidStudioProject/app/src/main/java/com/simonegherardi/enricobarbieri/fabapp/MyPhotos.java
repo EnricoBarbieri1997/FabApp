@@ -1,4 +1,8 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
-public class MyPhotos extends Album {
+import java.util.ArrayList;
+
+public class MyPhotos{
+    protected ArrayList<Photo>  Photolist;
+
 }

@@ -45,4 +45,16 @@ public class SingleUser extends User {
     {
         resource.setReported(true);
     }
+
+    public void follow(SingleUser newfollowed)
+    {
+        followedUsers.add(newfollowed);
+    }
+
+    public void follow(Group newfollowed)
+    {
+        followedGroups.add(newfollowed);
+    }
+
+
 }
