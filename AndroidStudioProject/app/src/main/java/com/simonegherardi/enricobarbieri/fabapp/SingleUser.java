@@ -3,9 +3,15 @@ package com.simonegherardi.enricobarbieri.fabapp;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SingleUser extends User {
     protected PersonalData info;
-    protected Album myAlbum;
+    protected PostedPhotos postedPhotos;
+    protected MyPhotos myPhotos;
+    protected List<SingleUser> followedUsers;
+    protected List<Group> followedGroups;
     protected boolean isPrivate;
     public static SingleUser FromJSON(JSON json)
     {
@@ -32,7 +38,10 @@ public class SingleUser extends User {
     {
         super();
         this.info = new PersonalData();
-        this.myAlbum = new Album();
+        this.postedPhotos = new PostedPhotos();
+        this.myPhotos = new MyPhotos();
+        this.followedGroups = new ArrayList<Group>();
+        this.followedUsers = new ArrayList<SingleUser>();
         this.isPrivate = false;
     }
 
