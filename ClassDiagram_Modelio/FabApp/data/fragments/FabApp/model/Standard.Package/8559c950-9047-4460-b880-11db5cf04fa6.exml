@@ -39,6 +39,9 @@
         <COMPID name="EmojiFactory" mc="Standard.Class" uid="4d2ff418-53c7-4f31-8524-0b2432124d79"/>
         <COMPID name="ImageDocument" mc="Standard.Class" uid="08a4ba82-a20d-4352-8eb2-937269d8b1bf"/>
         <COMPID name="Vector" mc="Standard.DataType" uid="e1aa6b31-a7e0-48aa-abb6-c17ceff48cf2"/>
+        <COMPID name="IRESTable" mc="Standard.Interface" uid="4dfa9707-74df-4a3a-a8ec-b2b1dfa04f06"/>
+        <COMPID name="Parser" mc="Standard.Class" uid="feb1f84e-cc76-462e-bae3-3d0e2f2c0048"/>
+        <COMPID name="JSONParser" mc="Standard.Class" uid="eea33220-a4ee-4f12-8eb8-7933d877e235"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="fabapp Class diagram" mc="Standard.ClassDiagram" uid="3eb3fdf4-a33f-46fd-bf93-e61ad47455db"/>

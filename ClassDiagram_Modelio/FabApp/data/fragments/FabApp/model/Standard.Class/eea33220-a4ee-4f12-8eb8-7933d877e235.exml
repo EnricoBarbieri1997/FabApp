@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Resource" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="JSONParser" version="4">
   <OBJECT>
-    <ID name="Resource" mc="Standard.Class" uid="c85ac32a-eb17-4c1b-b184-67ad4420caf1"/>
+    <ID name="JSONParser" mc="Standard.Class" uid="eea33220-a4ee-4f12-8eb8-7933d877e235"/>
     <PID name="fabapp" mc="Standard.Package" uid="8559c950-9047-4460-b880-11db5cf04fa6"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[Resource]]></ATT>
+      <ATT name="Name"><![CDATA[JSONParser]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="Parent">
         <OBJECT>
-          <ID name="Generalization" mc="Standard.Generalization" uid="14e67393-c918-4115-a8e0-1502734edb67"/>
+          <ID name="Generalization" mc="Standard.Generalization" uid="4006ad7c-ccc7-4746-ac03-96dc747f8c22"/>
           <ATTRIBUTES>
             <ATT name="Discriminator"></ATT>
             <ATT name="Name"><![CDATA[Generalization]]></ATT>
@@ -25,21 +25,23 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="SuperType">
-              <ID name="Flyweight" mc="Standard.Class" uid="39acb937-473e-4679-a4e3-ee1d730f7e1a"/>
+              <ID name="Parser" mc="Standard.Class" uid="feb1f84e-cc76-462e-bae3-3d0e2f2c0048"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
-      <COMP relation="Realized">
+      <COMP relation="Descriptor">
         <OBJECT>
-          <ID name="InterfaceRealization" mc="Standard.InterfaceRealization" uid="ac518197-f333-4e0a-a79e-0c5819eb3710"/>
+          <ID name="" mc="Infrastructure.Note" uid="91a414b5-0d3b-4843-97e3-ab5d42c921bf"/>
           <ATTRIBUTES>
-            <ATT name="Name"><![CDATA[InterfaceRealization]]></ATT>
+            <ATT name="Content"><![CDATA[<Enter note text here>]]></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
-            <LINK relation="Implemented">
-              <ID name="IRESTable" mc="Standard.Interface" uid="4dfa9707-74df-4a3a-a8ec-b2b1dfa04f06"/>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>
