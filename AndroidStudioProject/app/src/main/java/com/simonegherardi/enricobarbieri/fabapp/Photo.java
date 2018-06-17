@@ -3,6 +3,8 @@ package com.simonegherardi.enricobarbieri.fabapp;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
+
 public class Photo extends Resource implements Comparable<Photo> {
 
     protected Bitmap img;
@@ -10,6 +12,7 @@ public class Photo extends Resource implements Comparable<Photo> {
     protected int likes;
     protected int iDPhotographer;
     protected int iDPhotograpghed;
+
 
 
     public Photo(String pathname, int iDPhotographer, int idPhotographed)
