@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FabApp</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="name">Simone</string>
+    <string name="surname">Gherardi</string>
+    <string name="phone_number">3341810181</string>
+    <string name="email">simo95omis@gmail.com</string>
 </resources>

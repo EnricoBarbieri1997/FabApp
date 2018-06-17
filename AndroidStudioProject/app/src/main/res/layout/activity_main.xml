@@ -1,18 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+            <ImageView
+                android:contentDescription="The profile Image"
+                android:id="@+id/profile_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                />
+
+            <TextView
+                android:contentDescription="The profile Username"
+                android:id="@+id/profile_username"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/profile_image"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="10dp"
+                />
+            <TextView
+                android:contentDescription="Name"
+                android:id="@+id/profile_name"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/profile_image"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:text="Name"
+                />
+
+            <TextView
+                android:contentDescription="Surname"
+                android:id="@+id/profile_namevalue"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/profile_name"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerInParent="true"
+                android:text="@string/name"
+                />
+
+            <TextView
+                android:contentDescription="Surname"
+                android:id="@+id/profile_surname"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/profile_namevalue"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:text="Surname"
+                />
+
+            <TextView
+                android:contentDescription="Surname"
+                android:id="@+id/profile_surnamevalue"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/profile_surname"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerInParent="true"
+                android:text="@string/surname"
+                />
+
+            <TextView
+                android:contentDescription="Surname"
+                android:id="@+id/profile_phonenumber"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/profile_surnamevalue"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:text="Phone Number"
+                />
+
+            <TextView
+                android:contentDescription="Surname"
+                android:id="@+id/profile_phonenumbervalue"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/profile_phonenumber"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerInParent="true"
+                android:text="@string/phone_number"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
