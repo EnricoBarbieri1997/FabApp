@@ -3,32 +3,30 @@ package com.simonegherardi.enricobarbieri.fabapp;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-
 public class Photo extends Resource implements Comparable<Photo> {
 
     protected Bitmap img;
-    protected int idPhoto;
+    protected Integer id;
     protected int likes;
-    protected int iDPhotographer;
-    protected int iDPhotograpghed;
+    protected SingleUser photographer;
+    protected SingleUser photograpghed;
 
 
 
-    public Photo(String pathname, int iDPhotographer, int idPhotographed)
+    public Photo(String pathname, SingleUser photographer, SingleUser photographed)
     {
         super();
-        this.iDPhotographer=iDPhotographer;
-        this.iDPhotograpghed=idPhotographed;
+        this.photographer=photographer;
+        this.photograpghed=photographed;
     }
 
 
     @Override
     public int compareTo(@NonNull Photo o) {
-        if (this.idPhoto == o.idPhoto)
+        if (this.id == o.id)
         {
             return 0;
-        } else if (this.idPhoto < o.idPhoto)
+        } else if (this.id < o.id)
         {
             return -1;
         } else

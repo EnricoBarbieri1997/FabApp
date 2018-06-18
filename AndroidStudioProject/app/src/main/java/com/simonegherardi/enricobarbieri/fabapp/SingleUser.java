@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SingleUser extends User {
+public class SingleUser extends User implements Comparable<SingleUser> {
+    protected Integer id;
     protected PersonalData info;
     protected PostedPhotos postedPhotos;
     protected MyPhotos myPhotos;
@@ -16,6 +17,8 @@ public class SingleUser extends User {
     protected List<Group> followedGroups;
     protected List<Photo> likedPhotos;
     protected boolean isPrivate;
+
+
 
     public static SingleUser FromJSON(JSON json)
     {
@@ -41,7 +44,7 @@ public class SingleUser extends User {
     private SingleUser()
     {
         super();
-        this.info = new PersonalData();
+        // aggiungere info this.info = new PersonalData();
         this.postedPhotos = new PostedPhotos();
         this.myPhotos = new MyPhotos();
         this.followedGroups = new ArrayList<Group>();
@@ -110,5 +113,17 @@ public class SingleUser extends User {
         followedGroups.add(newfollowed);
     }
 
+    public int compareTo( SingleUser o) {
+        if (this.id == o.id)
+        {
+            return 0;
+        } else if (this.id < o.id)
+        {
+            return -1;
+        } else
+        {
+            return 1;
+        }
+    }
 
 }
