@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SingleUser extends User implements Comparable<SingleUser> {
-    protected Integer id;
     protected PersonalData info;
     protected PostedPhotos postedPhotos;
     protected MyPhotos myPhotos;

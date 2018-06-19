@@ -37,8 +37,6 @@
                 android:layout_centerInParent="true"
                 android:textColor="@color/colorMidnight_blue"
                 />
-
-            <ImageView  />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

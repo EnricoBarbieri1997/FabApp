@@ -28,6 +28,34 @@ public class ResourceFlyweightAsync{
             WebServer.Main().GenericRequest(HttpMethod.GET, Table.SingleUser, "id",id.toString(), sufr);
         }
     }
+
+    public static void GetGroup(Integer id, IResourceConsumer callback)
+    {
+        if(ResourceFlyweightAsync.resources.containsKey(id))
+        {
+            callback.OnResourceReady(ResourceFlyweightAsync.resources.get(id));
+        }
+        else
+        {
+            SingleUserFactoryResult sufr = new SingleUserFactoryResult(callback);
+            WebServer.Main().GenericRequest(HttpMethod.GET, Table.Group, "id",id.toString(), sufr);
+        }
+    }
+
+    public static void GetPhoto(Integer id, IResourceConsumer callback)
+    {
+        if(ResourceFlyweightAsync.resources.containsKey(id))
+        {
+            callback.OnResourceReady(ResourceFlyweightAsync.resources.get(id));
+        }
+        else
+        {
+            SingleUserFactoryResult sufr = new SingleUserFactoryResult(callback);
+            WebServer.Main().GenericRequest(HttpMethod.GET, Table.Image, "id",id.toString(), sufr);
+        }
+    }
+
+
     public static Resource Intern(Resource resource)
     {
         Resource result = ResourceFlyweightAsync.resources.get(resource.getId());
