@@ -10,6 +10,10 @@ public class DummyRestable implements IRESTable{
     public void Get(String result){
         JSON a = new JSON(result);
         try {
+            JSON c = new JSON("");
+            JSON d = new JSON("{}");
+            d.Set("simo", "bello");
+            //c.Set("aaa", "bbb");
             JSON b = (JSON)a.GetParser("1");
             b.GetInt("id");
             b.GetString("id");

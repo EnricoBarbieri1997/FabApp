@@ -128,7 +128,12 @@ public class JSON implements Parser, Composer
     public void Set(String key, Composer c){
         String str = "";
         Integer endIndex = this.str.lastIndexOf('}');
-        str = this.str.substring(0,endIndex) + ",\"" + key + "\":" + c.GetValue() + "}";
+        String comma = "";
+        if(this.str.charAt(endIndex-1) != '{')
+        {
+            comma = ",";
+        }
+        str = this.str.substring(0,endIndex) + comma + "\"" + key + "\":" + c.GetValue() + "}";
 
         this.str = str;
     }
@@ -137,7 +142,12 @@ public class JSON implements Parser, Composer
     public void Set(String key, String s){
         String str = "";
         Integer endIndex = this.str.lastIndexOf('}');
-        str = this.str.substring(0,endIndex) + ",\"" + key + "\":\"" + s + "\"}";
+        String comma = "";
+        if(this.str.charAt(endIndex-1) != '{')
+        {
+            comma = ",";
+        }
+        str = this.str.substring(0,endIndex) + comma + "\"" + key + "\":\"" + s + "\"}";
 
         this.str = str;
     }
@@ -146,7 +156,12 @@ public class JSON implements Parser, Composer
     public void Set(String key, Integer i) throws Exception {
         String str = "";
         Integer endIndex = this.str.lastIndexOf('}');
-        str = this.str.substring(0,endIndex) + ",\"" + key + "\":" + i.toString() + "}";
+        String comma = "";
+        if(this.str.charAt(endIndex-1) != '{')
+        {
+            comma = ",";
+        }
+        str = this.str.substring(0,endIndex) + comma + "\"" + key + "\":" + i.toString() + "}";
 
         this.str = str;
     }
