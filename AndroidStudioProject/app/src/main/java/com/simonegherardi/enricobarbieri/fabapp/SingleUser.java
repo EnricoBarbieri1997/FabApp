@@ -24,7 +24,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         SingleUser su = new SingleUser();
         try
         {
-            su.Init(json.GetInt("Id"), json.GetString("username"), json.GetString("phone"), json.GetString("email"));
+            su.Init(json.GetInt("id"), json.GetString("username"), json.GetString("phone"), json.GetString("email"));
         }
         catch (JSONParseException e)
         {
@@ -35,9 +35,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
     private void Init(Integer id, String username, String phone, String email)
     {
         this.id = id;
-        this.info.username = username;
-        this.info.phone = phone;
-        this.info.email = email;
+        this.info = this.info = new PersonalData(phone, email, username, "", "");
 
     }
     private SingleUser()

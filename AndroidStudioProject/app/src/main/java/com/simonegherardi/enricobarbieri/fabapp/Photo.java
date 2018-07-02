@@ -24,7 +24,7 @@ public class Photo extends Resource implements Comparable<Photo> {
         Photo p = new Photo();
         try
         {
-            p.Init(json.GetInt("Id"), json.GetInt("idPhotographer"), json.GetInt("idPhotographed"));
+            p.Init(json.GetInt("id"), json.GetInt("photographer"), json.GetInt("photographed"));
         }
         catch (JSONParseException e)
         {

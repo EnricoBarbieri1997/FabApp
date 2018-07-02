@@ -9,7 +9,7 @@ import com.simonegherardi.enricobarbieri.fabapp.SingleUser;
 public enum Table {
     Resource("Resource"),
     Image("Image"),
-    Group("Group"),
+    Group("Groupuser"),
     SingleUser("Single");
 
     private String table;

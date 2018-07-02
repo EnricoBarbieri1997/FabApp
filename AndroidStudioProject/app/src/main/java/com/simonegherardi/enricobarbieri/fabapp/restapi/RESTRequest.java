@@ -18,13 +18,17 @@ public class RESTRequest implements Runnable
     private String url;
     private String method;
     private IRESTable callback;
+    private RESTResponse response;
 
-    public void Init(JSON body, HttpMethod method, IRESTable callback, String baseUrl, String ... params)
+    public RESTResponse Init(JSON body, HttpMethod method, IRESTable callback, String baseUrl, String ... params)
     {
         setBody(body);
         setMethod(method);
         setCallback(callback);
         setUrl(baseUrl, params);
+        this.response = new RESTResponse();
+        this.response.SetRequestType(method);
+        return this.response;
     }
     public void setBody(JSON json) {
         this.body = json.GetValue();
@@ -87,26 +91,13 @@ public class RESTRequest implements Runnable
             rd.close();
             //return response.toString();
             String result = response.toString();
-            switch(method)
-            {
-                case "GET":
-                    callback.Get(result);
-                    break;
-                case "POST":
-                    callback.Post(result);
-                    break;
-                case "PUT":
-                    callback.Put(result);
-                    break;
-                case "DELETE":
-                    callback.Delete(result);
-                    break;
-
-            }
+            this.response.SetResponse(result);
+            this.callback.Success(this.response);
         } catch (Exception e) {
             e.printStackTrace();
             //return null;
-            callback.Error(e.getMessage());
+            this.response.SetResponse(e.getMessage());
+            callback.Error(this.response);
         } finally {
             if (connection != null) {
                 connection.disconnect();

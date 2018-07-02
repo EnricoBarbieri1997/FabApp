@@ -7,5 +7,5 @@ import com.simonegherardi.enricobarbieri.fabapp.Resource;
  */
 
 public interface IResourceConsumer {
-    public void OnResourceReady(Resource resource);
+    public void OnResourceReady(ResourceResponse response);
 }

@@ -18,7 +18,7 @@ public class Group extends User {
         Group g = new Group();
         try
         {
-            g.Init(json.GetInt("Id"), json.GetString("groupName"));
+            g.Init(json.GetInt("id"), json.GetString("name"));
         }
         catch (JSONParseException e)
         {

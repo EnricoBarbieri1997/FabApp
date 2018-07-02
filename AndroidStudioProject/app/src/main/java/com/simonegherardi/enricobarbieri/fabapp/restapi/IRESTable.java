@@ -6,9 +6,6 @@ package com.simonegherardi.enricobarbieri.fabapp.restapi;
 
 public interface IRESTable
 {
-    public void Get(String result);
-    public void Post(String result);
-    public void Put(String result);
-    public void Delete(String result);
-    public void Error(String result);
+    public void Success(RESTResponse response);
+    public void Error(RESTResponse result);
 }

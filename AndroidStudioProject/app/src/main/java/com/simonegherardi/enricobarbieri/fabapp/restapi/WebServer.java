@@ -25,47 +25,53 @@ public class WebServer
         }
         this.url = url;
     }
-    public void GenericRequest(HttpMethod method, Table table, String attribute, String value, String min, String max, JSON body, IRESTable callback)
+    public RESTResponse GenericRequest(HttpMethod method, Table table, String attribute, String value, String min, String max, JSON body, IRESTable callback)
     {
         RESTRequest rr = new RESTRequest();
-        rr.Init(body, method, callback, "");
+        RESTResponse response = rr.Init(body, method, callback, "");
         rr.setUrl(this.url, table.GetTable(), attribute, value, min, max);
         this.StartRequest(rr);
+        return response;
     }
-    public void GenericRequest(HttpMethod method, Table table, String attribute, String value, JSON body, IRESTable callback)
+    public RESTResponse GenericRequest(HttpMethod method, Table table, String attribute, String value, JSON body, IRESTable callback)
     {
         RESTRequest rr = new RESTRequest();
-        rr.Init(body, method, callback, "");
+        RESTResponse response = rr.Init(body, method, callback, "");
         rr.setUrl(this.url, table.GetTable(), attribute, value);
         this.StartRequest(rr);
+        return response;
     }
-    public void GenericRequest(HttpMethod method, Table table, String attribute, String value, String min, String max, IRESTable callback)
+    public RESTResponse GenericRequest(HttpMethod method, Table table, String attribute, String value, String min, String max, IRESTable callback)
     {
         RESTRequest rr = new RESTRequest();
-        rr.Init(new JSON(""), method, callback, "");
+        RESTResponse response = rr.Init(new JSON(""), method, callback, "");
         rr.setUrl(this.url, table.GetTable(), attribute, value, min, max);
         this.StartRequest(rr);
+        return response;
     }
-    public void GenericRequest(HttpMethod method, Table table, String attribute, String value, IRESTable callback)
+    public RESTResponse GenericRequest(HttpMethod method, Table table, String attribute, String value, IRESTable callback)
     {
         RESTRequest rr = new RESTRequest();
-        rr.Init(new JSON(""), method, callback, "");
+        RESTResponse response = rr.Init(new JSON(""), method, callback, "");
         rr.setUrl(this.url, table.GetTable(), attribute, value);
         this.StartRequest(rr);
+        return response;
     }
-    public void GenericRequest(HttpMethod method, Table table, IRESTable callback)
+    public RESTResponse GenericRequest(HttpMethod method, Table table, IRESTable callback)
     {
         RESTRequest rr = new RESTRequest();
-        rr.Init(new JSON(""), method, callback, "");
+        RESTResponse response = rr.Init(new JSON(""), method, callback, "");
         rr.setUrl(this.url, table.GetTable());
         this.StartRequest(rr);
+        return response;
     }
-    public void GenericRequest(HttpMethod method, Table table, JSON body, IRESTable callback)
+    public RESTResponse GenericRequest(HttpMethod method, Table table, JSON body, IRESTable callback)
     {
         RESTRequest rr = new RESTRequest();
-        rr.Init(body, method, callback, "");
+        RESTResponse response = rr.Init(body, method, callback, "");
         rr.setUrl(this.url, table.GetTable());
         this.StartRequest(rr);
+        return response;
     }
     private void StartRequest(RESTRequest rr)
     {

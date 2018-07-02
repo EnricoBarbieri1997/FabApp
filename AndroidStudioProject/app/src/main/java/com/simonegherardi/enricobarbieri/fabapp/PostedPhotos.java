@@ -7,7 +7,7 @@ public class PostedPhotos{
 
     public void deletePhoto(Photo deleted)
     {
-        deleted.photograpghed.myPhotos.Photolist.remove(deleted);
-        deleted.photographer.postedPhotos.Photolist.remove(deleted);
+        /*deleted.idPhotograpghed.myPhotos.Photolist.remove(deleted);
+        deleted.idPhotographer.postedPhotos.Photolist.remove(deleted);*/
     }
 }
