@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
             "Img7",
             "Img8",
             "Img9",
+            "Img10",
     };
 
     private final Integer image_ids[] = {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.img7,
             R.drawable.img8,
             R.drawable.img9,
+            R.drawable.img10,
 
     };
 
