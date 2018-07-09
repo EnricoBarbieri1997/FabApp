@@ -1,13 +1,17 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -30,11 +34,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(final MyAdapter.ViewHolder viewHolder, int i) {
         viewHolder.title.setText(galleryList.get(i).getImage_title());
         viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        viewHolder.img.setImageResource((galleryList.get(i).getImage_ID()));
+        Glide
+                .with(context)
+                .load(galleryList.get(i).getImage_ID())
+                .thumbnail(0.1f)
+                .into(viewHolder.img);
+        final Intent fullscreen = new Intent (context , DisplayFullScreen.class);
+        fullscreen.putExtra("image_id",galleryList.get(i).getImage_ID());
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(context,"Image",Toast.LENGTH_SHORT).show();
+            context.startActivity(fullscreen);
         }
         });
     }
@@ -46,8 +56,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView title;
-        private ImageView img;
+        private final TextView title;
+        private final ImageView img;
         public ViewHolder(View view) {
             super(view);
 
