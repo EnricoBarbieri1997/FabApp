@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.RelativeLayout;
 
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.DummyResourceConsumer;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
@@ -14,7 +15,10 @@ import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
 
 import java.util.ArrayList;
 
+import static android.graphics.Color.BLACK;
+
 public class MainActivity extends AppCompatActivity {
+
 
     private final String image_titles[] = {
             "Img1",

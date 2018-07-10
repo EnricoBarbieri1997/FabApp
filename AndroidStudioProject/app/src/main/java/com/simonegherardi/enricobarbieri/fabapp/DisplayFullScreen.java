@@ -1,33 +1,31 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextClock;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-public class DisplayFullScreen extends Activity {
+public class DisplayFullScreen extends AppCompatActivity {
     private Context context;
-    protected final ImageView fullScreenImage;
+    private int idImage;
 
-    public DisplayFullScreen(ImageView fullScreenImage, Context context) {
-        this.fullScreenImage = fullScreenImage;
-        this.context = context;
+    public DisplayFullScreen()
+    {
+        super();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.displayfullscreen);
+        setContentView(R.layout.activity_display_full_screen);
+        final ImageView fsImage = (ImageView) findViewById(R.id.fullscreenImage);
+        context = getApplicationContext();
         Bundle b = getIntent().getExtras();
-        int id = b.getInt("image_id");
-        Glide
-                .with(context)
-                .load(id)
-                .into(this.fullScreenImage);
-
+        idImage = b.getInt("image_id");
+        fsImage.setImageResource(idImage);
     }
 }
