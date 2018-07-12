@@ -3,4 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageButton
+        android:id="@+id/personal_profile_imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_personal_profile_imagebutton"
+        android:layout_centerInParent="true"
+        android:onClick="startPersonalProfileActivity"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/personal_profile"
+        android:layout_below="@id/personal_profile_imageButton"
+        android:layout_centerHorizontal="true"
+        />
+
+
 </RelativeLayout>
