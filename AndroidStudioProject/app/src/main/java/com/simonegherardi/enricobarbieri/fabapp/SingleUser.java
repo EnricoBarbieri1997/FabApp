@@ -38,10 +38,23 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         this.info = this.info = new PersonalData(phone, email, username, "", "");
 
     }
-    private SingleUser()
+
+
+    public SingleUser()
     {
         super();
-        // aggiungere info this.info = new PersonalData();
+        this.info = new PersonalData();
+        this.postedPhotos = new PostedPhotos();
+        this.myPhotos = new MyPhotos();
+        this.followedGroups = new ArrayList<Group>();
+        this.followedUsers = new ArrayList<SingleUser>();
+        this.isPrivate = false;
+    }
+
+    public SingleUser(String phone, String email, String username, String name, String surname)
+    {
+        super();
+        this.info = new PersonalData(phone, email, username, name, surname);
         this.postedPhotos = new PostedPhotos();
         this.myPhotos = new MyPhotos();
         this.followedGroups = new ArrayList<Group>();

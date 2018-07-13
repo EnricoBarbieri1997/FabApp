@@ -11,6 +11,9 @@ public class PersonalData extends Activity {
     protected String surname;
 
 
+    public PersonalData()
+    {
+    }
 
     public PersonalData(String phone, String email, String username, String name, String surname)
     {
@@ -20,6 +23,8 @@ public class PersonalData extends Activity {
         this.name=name;
         this.surname=surname;
     }
+
+
 
 
 }

@@ -22,6 +22,8 @@ import static android.graphics.Color.BLACK;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SingleUser test1;
+
 
     /*public void startPersonalProfileActivity()
     {
@@ -31,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void startPersonalProfileActivity() {
         final Intent personalProfile = new Intent(getApplicationContext(), PersonalProfileActivity.class);
+
+        // tutto questo blocco verrà sostituito dal passaggio dell'id della risorsa
+        personalProfile.putExtra("phone_number", this.test1.info.phone);
+        personalProfile.putExtra("email", this.test1.info.email);
+        personalProfile.putExtra("username", this.test1.info.username);
+        personalProfile.putExtra("name", this.test1.info.name);
+        personalProfile.putExtra("surname", this.test1.info.surname);
+
         getApplicationContext().startActivity(personalProfile);
     }
 
@@ -38,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        test1 = new SingleUser("3345850585", "simone.gherardi2@gmail.com", "Shadowing", "Simone", "Gherardi");
 
         ImageButton personal_profile_imageButton = (ImageButton) findViewById(R.id.personal_profile_imageButton);
         personal_profile_imageButton.setOnClickListener(new View.OnClickListener() {
