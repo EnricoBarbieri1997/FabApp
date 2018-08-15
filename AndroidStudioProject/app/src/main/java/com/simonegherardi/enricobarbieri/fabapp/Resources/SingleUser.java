@@ -1,5 +1,9 @@
-package com.simonegherardi.enricobarbieri.fabapp;
+package com.simonegherardi.enricobarbieri.fabapp.Resources;
 
+import com.simonegherardi.enricobarbieri.fabapp.PersonalData;
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.SingleUserUploader;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
 
@@ -13,12 +17,37 @@ public class SingleUser extends User implements Comparable<SingleUser> {
     protected PostedPhotos postedPhotos;
     protected MyPhotos myPhotos;
     protected List<SingleUser> followedUsers;
-    protected List<Group> followedGroups;
+    protected List<GroupUser> followedGroups;
     protected List<Photo> likedPhotos;
     protected boolean isPrivate;
+    private SingleUser()
+    {
+        super();
+        // aggiungere info this.info = new PersonalData();
+        this.postedPhotos = new PostedPhotos();
+        this.myPhotos = new MyPhotos();
+        this.followedGroups = new ArrayList<GroupUser>();
+        this.followedUsers = new ArrayList<SingleUser>();
+        this.isPrivate = false;
+    }
 
+    @Override
+    public ResourceResponse Upload(IResourceConsumer callback) {
+        SingleUserUploader singleUserUploader = new SingleUserUploader(this, callback);
+        return singleUserUploader.Upload();
+    }
 
+    @Override
+    public SingleUser Downcast() {
+        return ((SingleUser)this);
+    }
 
+    public static SingleUser Empty()
+    {
+        SingleUser singleUser = new SingleUser();
+        singleUser.SetId(-1);
+        return singleUser;
+    }
     public static SingleUser FromJSON(JSON json)
     {
         SingleUser su = new SingleUser();
@@ -32,21 +61,15 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         }
         return su;
     }
-    private void Init(Integer id, String username, String phone, String email)
+    public void Init(Integer id, String username, String phone, String email)
     {
         this.id = id;
         this.info = this.info = new PersonalData(phone, email, username, "", "");
 
     }
-    private SingleUser()
+    public void Init(String username, String phone, String email)
     {
-        super();
-        // aggiungere info this.info = new PersonalData();
-        this.postedPhotos = new PostedPhotos();
-        this.myPhotos = new MyPhotos();
-        this.followedGroups = new ArrayList<Group>();
-        this.followedUsers = new ArrayList<SingleUser>();
-        this.isPrivate = false;
+        this.info = this.info = new PersonalData(phone, email, username, "", "");
     }
 
     public boolean isPrivate() {
@@ -97,7 +120,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
 
     public void reportResource(Resource resource)
     {
-        resource.setReported(true);
+        resource.SetReported(true);
     }
 
     public void follow(SingleUser newfollowed)
@@ -105,7 +128,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         followedUsers.add(newfollowed);
     }
 
-    public void follow(Group newfollowed)
+    public void follow(GroupUser newfollowed)
     {
         followedGroups.add(newfollowed);
     }
@@ -122,5 +145,16 @@ public class SingleUser extends User implements Comparable<SingleUser> {
             return 1;
         }
     }
-
+    public String GetPhone()
+    {
+        return this.info.phone;
+    }
+    public String GetUsername()
+    {
+        return this.info.username;
+    }
+    public String GetEmail()
+    {
+        return this.info.email;
+    }
 }

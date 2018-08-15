@@ -1,5 +1,7 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
-public class GraphicalElement extends Resource {
+import com.simonegherardi.enricobarbieri.fabapp.Resources.Resource;
+
+public class GraphicalElement {
     protected int position;
 }

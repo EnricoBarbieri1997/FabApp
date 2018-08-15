@@ -1,7 +1,5 @@
 package com.simonegherardi.enricobarbieri.fabapp.restapi;
 
-import com.simonegherardi.enricobarbieri.fabapp.SingleUser;
-
 /**
  * Created by Xxenr on 16/06/2018.
  */
@@ -9,8 +7,9 @@ import com.simonegherardi.enricobarbieri.fabapp.SingleUser;
 public enum Table {
     Resource("Resource"),
     Image("Image"),
-    Group("Groupuser"),
-    SingleUser("Single");
+    User("User"),
+    Group("GroupUser"),
+    SingleUser("SingleUser");
 
     private String table;
 

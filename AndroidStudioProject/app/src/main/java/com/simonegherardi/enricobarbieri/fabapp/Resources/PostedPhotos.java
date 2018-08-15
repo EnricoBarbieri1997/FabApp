@@ -1,4 +1,6 @@
-package com.simonegherardi.enricobarbieri.fabapp;
+package com.simonegherardi.enricobarbieri.fabapp.Resources;
+
+import com.simonegherardi.enricobarbieri.fabapp.Resources.Photo;
 
 import java.util.ArrayList;
 

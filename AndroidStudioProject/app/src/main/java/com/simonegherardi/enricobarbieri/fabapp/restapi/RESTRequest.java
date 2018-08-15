@@ -88,6 +88,7 @@ public class RESTRequest implements Runnable
                 response.append(line);
                 response.append(System.getProperty("line.separator"));
             }
+            response.deleteCharAt(response.length()-1);
             rd.close();
             //return response.toString();
             String result = response.toString();

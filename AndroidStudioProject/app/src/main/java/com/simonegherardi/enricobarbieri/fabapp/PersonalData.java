@@ -1,11 +1,11 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
 public class PersonalData {
-    protected String phone;
-    protected String email;
-    protected String username;
-    protected String name;
-    protected String surname;
+    public String phone;
+    public String email;
+    public String username;
+    public String name;
+    public String surname;
 
     public PersonalData(String phone, String email, String username, String name, String surname)
     {

@@ -1,9 +1,9 @@
 package com.simonegherardi.enricobarbieri.fabapp.flyweightasync;
 
-import com.simonegherardi.enricobarbieri.fabapp.Group;
-import com.simonegherardi.enricobarbieri.fabapp.Photo;
-import com.simonegherardi.enricobarbieri.fabapp.Resource;
-import com.simonegherardi.enricobarbieri.fabapp.SingleUser;
+import com.simonegherardi.enricobarbieri.fabapp.Resources.GroupUser;
+import com.simonegherardi.enricobarbieri.fabapp.Resources.Photo;
+import com.simonegherardi.enricobarbieri.fabapp.Resources.Resource;
+import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
@@ -88,10 +88,10 @@ public class ResourceFlyweightAsync implements IRESTable{
 
     public Resource Intern(Resource resource)
     {
-        Resource result = this.resources.get(resource.getId());
+        Resource result = this.resources.get(resource.GetId());
         if(result == null)
         {
-            result = this.resources.putIfAbsent(resource.getId(),resource);
+            result = this.resources.putIfAbsent(resource.GetId(),resource);
             if (result == null)
             {
                 result = resource;
@@ -113,7 +113,7 @@ public class ResourceFlyweightAsync implements IRESTable{
                 resource = ResourceFlyweightAsync.Main().Intern(SingleUser.FromJSON(new JSON(result)));
                 break;
             case GroupUser:
-                resource = ResourceFlyweightAsync.Main().Intern(Group.FromJSON(new JSON(result)));
+                resource = ResourceFlyweightAsync.Main().Intern(GroupUser.FromJSON(new JSON(result)));
                 break;
             case Photo:
                 resource = ResourceFlyweightAsync.Main().Intern(Photo.FromJSON(new JSON(result)));

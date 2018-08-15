@@ -9,6 +9,10 @@ import android.graphics.Point;
 public class JSON implements Parser, Composer
 {
     String str="";
+    public JSON()
+    {
+        this.str = "{}";
+    }
     public JSON(String str)
     {
         if(!(str.endsWith("}") || str.endsWith("]")))

@@ -1,7 +1,10 @@
-package com.simonegherardi.enricobarbieri.fabapp;
+package com.simonegherardi.enricobarbieri.fabapp.Resources;
 
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
 
@@ -19,6 +22,14 @@ public class Photo extends Resource implements Comparable<Photo> {
         super();
     }
 
+    @Override
+    public ResourceResponse Upload(IResourceConsumer callback) {
+        return null;
+    }
+
+    public Photo Downcast() {
+        return (Photo)this;
+    }
     public static Photo FromJSON(JSON json)
     {
         Photo p = new Photo();

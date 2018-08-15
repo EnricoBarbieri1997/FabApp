@@ -1,21 +1,23 @@
-package com.simonegherardi.enricobarbieri.fabapp;
+package com.simonegherardi.enricobarbieri.fabapp.Resources;
 
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Group extends User {
+public class GroupUser extends User {
     protected String groupName;
     protected ArrayList<MyPhotos> groupPhotos;
     protected List<Integer> members;
     protected List<Integer> admins;
 
 
-    public static Group FromJSON(JSON json)
+    public static GroupUser FromJSON(JSON json)
     {
-        Group g = new Group();
+        GroupUser g = new GroupUser();
         try
         {
             g.Init(json.GetInt("id"), json.GetString("name"));
@@ -26,13 +28,15 @@ public class Group extends User {
         }
         return g;
     }
-
+    @Override
+    public GroupUser Downcast() {
+        return (GroupUser)this;
+    }
     private void Init(Integer id, String groupName)
     {
         this.id = id;
         this.groupName = groupName;
     }
-
     public void removeMember(Integer banned, Integer admin)
     {
         for (Integer member : admins )
@@ -42,5 +46,10 @@ public class Group extends User {
                 this.members.remove(banned);
             }
         }
+    }
+
+    @Override
+    public ResourceResponse Upload(IResourceConsumer callback) {
+        return null;
     }
 }

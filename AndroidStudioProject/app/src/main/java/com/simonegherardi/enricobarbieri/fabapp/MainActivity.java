@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.DummyResourceConsumer;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.DummyRestable;
@@ -60,12 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
-
-
         setContentView(R.layout.personal_profile);
-
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.imagegallery);
         recyclerView.setHasFixedSize(true);
@@ -76,19 +72,13 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter(getApplicationContext(), createLists);
         recyclerView.setAdapter(adapter);
 
-
-
-
-
-
-
-
-
-
-
         DummyResourceConsumer a = new DummyResourceConsumer();
-        a.single = ResourceFlyweightAsync.Main().GetSingleUser(4, a);
+        SingleUser singleUser = SingleUser.Empty();
+        singleUser.Init("prova", "3345859043", "prova@finto.it");
+        a.single = singleUser.Upload(a);
+        /*a.single = ResourceFlyweightAsync.Main().GetSingleUser(4, a);
         a.group = ResourceFlyweightAsync.Main().GetGroup(2, a);
-        a.image = ResourceFlyweightAsync.Main().GetPhoto(3, a);
+        a.image = ResourceFlyweightAsync.Main().GetPhoto(3, a);*/
+
     }
 }

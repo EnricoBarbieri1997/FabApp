@@ -1,7 +1,6 @@
 package com.simonegherardi.enricobarbieri.fabapp.flyweightasync;
 
-import com.simonegherardi.enricobarbieri.fabapp.Resource;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.RESTResponse;
+import com.simonegherardi.enricobarbieri.fabapp.Resources.Resource;
 
 /**
  * Created by Xxenr on 02/07/2018.
