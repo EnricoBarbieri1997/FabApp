@@ -1,9 +1,13 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.DummyResourceConsumer;
@@ -15,62 +19,49 @@ import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
 
 import java.util.ArrayList;
 
+import static android.graphics.Color.BLACK;
+
 public class MainActivity extends AppCompatActivity {
 
-    private final String image_titles[] = {
-            "Img1",
-            "Img2",
-            "Img3",
-            "Img4",
-            "Img5",
-            "Img6",
-            "Img7",
-            "Img8",
-            "Img9",
-            "Img10",
-    };
+    private SingleUser test1;
 
-    private final Integer image_ids[] = {
-            R.drawable.img1,
-            R.drawable.img2,
-            R.drawable.img3,
-            R.drawable.img4,
-            R.drawable.img5,
-            R.drawable.img6,
-            R.drawable.img7,
-            R.drawable.img8,
-            R.drawable.img9,
-            R.drawable.img10,
 
-    };
+    /*public void startPersonalProfileActivity()
+    {
+        final Intent personalProfile = new Intent(getApplicationContext(), PersonalProfileActivity.class);
+        getApplicationContext().startActivity(personalProfile);
+    }*/
 
-    private ArrayList<CreateList> prepareData(){
+    public void startPersonalProfileActivity() {
+        final Intent personalProfile = new Intent(getApplicationContext(), PersonalProfileActivity.class);
 
-        ArrayList<CreateList> theimage = new ArrayList<>();
-        for(int i = 0; i< image_titles.length; i++){
-            CreateList createList = new CreateList();
-            createList.setImage_title(image_titles[i]);
-            createList.setImage_ID(image_ids[i]);
-            theimage.add(createList);
-        }
-        return theimage;
+        // tutto questo blocco verrà sostituito dal passaggio dell'id della risorsa
+        personalProfile.putExtra("phone_number", this.test1.info.phone);
+        personalProfile.putExtra("email", this.test1.info.email);
+        personalProfile.putExtra("username", this.test1.info.username);
+        personalProfile.putExtra("name", this.test1.info.name);
+        personalProfile.putExtra("surname", this.test1.info.surname);
+
+        getApplicationContext().startActivity(personalProfile);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        setContentView(R.layout.personal_profile);
+        test1 = SingleUser.Empty();
+        test1.Init("Shadowing","3345850585", "simone.gherardi2@gmail.com");
+        test1.SetName("Simone");
+        test1.SetSurname("Gherardi");
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.imagegallery);
-        recyclerView.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);
-        recyclerView.setLayoutManager(layoutManager);
-        ArrayList<CreateList> createLists = prepareData();
-        MyAdapter adapter = new MyAdapter(getApplicationContext(), createLists);
-        recyclerView.setAdapter(adapter);
+        ImageButton personal_profile_imageButton = (ImageButton) findViewById(R.id.personal_profile_imageButton);
+        personal_profile_imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startPersonalProfileActivity();
+           }
+        });
 
         DummyResourceConsumer a = new DummyResourceConsumer();
         SingleUser singleUser = SingleUser.Empty();
@@ -81,4 +72,6 @@ public class MainActivity extends AppCompatActivity {
         a.image = ResourceFlyweightAsync.Main().GetPhoto(3, a);*/
 
     }
+
+
 }

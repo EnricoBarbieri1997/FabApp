@@ -30,8 +30,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+
+    public void displayFullScreen(int id_photo)
+    {
+        final Intent fullscreen = new Intent(context , DisplayFullScreen.class);
+        fullscreen.putExtra("image_id",id_photo);
+        context.startActivity(fullscreen);
+    }
+
     @Override
     public void onBindViewHolder(final MyAdapter.ViewHolder viewHolder, int i) {
+        final int id = galleryList.get(i).getImage_ID();
         viewHolder.title.setText(galleryList.get(i).getImage_title());
         viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Glide
@@ -39,20 +48,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 .load(galleryList.get(i).getImage_ID())
                 .thumbnail(0.1f)
                 .into(viewHolder.img);
-        final Intent fullscreen = new Intent (context , DisplayFullScreen.class);
-        fullscreen.putExtra("image_id",galleryList.get(i).getImage_ID());
+
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            context.startActivity(fullscreen);
-        }
+            @Override
+            public void onClick(View v) {
+                displayFullScreen(id);
+            }
         });
     }
 
 
     @Override
     public int getItemCount() {
-        return galleryList.size();
+        return this.galleryList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

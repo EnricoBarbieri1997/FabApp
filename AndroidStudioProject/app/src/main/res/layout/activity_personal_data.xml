@@ -15,7 +15,7 @@
 
             <ImageView
                 android:contentDescription="The profile Image"
-                android:id="@+id/profile_image"
+                android:id="@+id/edit_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -26,25 +26,25 @@
 
             <TextView
                 android:contentDescription="The profile Username"
-                android:id="@+id/profile_username"
+                android:id="@+id/edit_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/profile_image"
+                android:layout_toRightOf="@id/edit_image"
                 android:layout_marginTop="90dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginStart="40dp"
-                android:layout_above="@id/profile_name"
+                android:layout_above="@id/edit_name"
                 android:layout_marginBottom="50dp"
                 android:text="@string/username"
                 android:layout_centerInParent="true"
                 android:textColor="@color/colorMidnight_blue"
                 />
             <TextView
-                android:contentDescription="Name"
-                android:id="@+id/profile_name"
+                android:contentDescription="Name string"
+                android:id="@+id/edit_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_image"
+                android:layout_below="@id/edit_image"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -53,11 +53,11 @@
                 />
 
             <TextView
-                android:contentDescription="Surname"
-                android:id="@+id/profile_namevalue"
+                android:contentDescription="Name"
+                android:id="@+id/edit_namevalue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_name"
+                android:layout_below="@id/edit_name"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -67,23 +67,23 @@
                 />
 
             <TextView
-                android:id="@+id/profile_surname"
+                android:contentDescription="Surname string"
+                android:id="@+id/edit_surname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_namevalue"
+                android:layout_below="@id/edit_namevalue"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="25dp"
-                android:contentDescription="Surname"
                 android:text="Surname"
                 android:textColor="@color/colorBlue" />
 
             <TextView
                 android:contentDescription="Surname"
-                android:id="@+id/profile_surnamevalue"
+                android:id="@+id/edit_surnamevalue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_surname"
+                android:layout_below="@id/edit_surname"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -93,11 +93,11 @@
                 />
 
             <TextView
-                android:contentDescription="Surname"
-                android:id="@+id/profile_phonenumber"
+                android:contentDescription="Phone Number string"
+                android:id="@+id/edit_phonenumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_surnamevalue"
+                android:layout_below="@id/edit_surnamevalue"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -106,11 +106,11 @@
                 />
 
             <TextView
-                android:contentDescription="Surname"
-                android:id="@+id/profile_phonenumbervalue"
+                android:contentDescription="Phone Number"
+                android:id="@+id/edit_phonenumbervalue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_phonenumber"
+                android:layout_below="@id/edit_phonenumber"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -121,11 +121,11 @@
 
             <Button
                 android:contentDescription="EditButton"
-                android:id="@+id/profile_editbutton"
+                android:id="@+id/edit_editbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_below="@id/profile_phonenumbervalue"
+                android:layout_below="@id/edit_phonenumbervalue"
                 android:layout_marginStart="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="25dp"

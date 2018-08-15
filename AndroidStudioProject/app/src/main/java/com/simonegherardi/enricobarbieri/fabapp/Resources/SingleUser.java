@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SingleUser extends User implements Comparable<SingleUser> {
-    protected PersonalData info;
+    public PersonalData info;
     protected PostedPhotos postedPhotos;
     protected MyPhotos myPhotos;
     protected List<SingleUser> followedUsers;
@@ -111,7 +111,14 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         this.likedPhotos.add(likedPhoto);
     }
 
-
+    public void SetName(String name)
+    {
+        this.info.name = name;
+    }
+    public void SetSurname(String surname)
+    {
+        this.info.surname = surname;
+    }
 
     public void setPrivate(boolean status)
     {

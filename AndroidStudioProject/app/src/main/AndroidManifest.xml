@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayFullScreen"></activity>
+        <activity android:name=".DisplayFullScreen" />
+        <activity android:name=".PersonalProfileActivity" />
+        <activity android:name=".SetPersonalDataActivity" />
+        <activity android:name=".PersonalDataActivity"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,11 @@ public class PersonalData {
     public String name;
     public String surname;
 
+
+    public PersonalData()
+    {
+    }
+
     public PersonalData(String phone, String email, String username, String name, String surname)
     {
         this.phone=phone;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <ScrollView
@@ -25,19 +26,34 @@
                 android:background="@mipmap/ic_radish_spirit"
                 android:contentDescription="The profile Image" />
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/profile_image"
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="40dp">
+
             <TextView
+                android:contentDescription="The profile Username"
                 android:id="@+id/profile_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/profile_name"
-                android:layout_marginTop="60dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="50dp"
-                android:layout_marginStart="40dp"
-                android:layout_toRightOf="@id/profile_image"
-                android:contentDescription="The profile Username"
                 android:text="@string/username"
-                android:textColor="@color/colorMidnight_blue" />
+                android:textColor="@color/colorMidnight_blue"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/expand"
+                android:background="@drawable/ic_expand_more"
+                android:layout_toRightOf="@id/profile_username"/>
+
+            </RelativeLayout>
+
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/imagegallery"
