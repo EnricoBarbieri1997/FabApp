@@ -7,6 +7,7 @@ import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
 
 public class Photo extends Resource implements Comparable<Photo> {
 
@@ -23,12 +24,18 @@ public class Photo extends Resource implements Comparable<Photo> {
     }
 
     @Override
-    public ResourceResponse Upload(IResourceConsumer callback) {
+    public Table GetTable() {
         return null;
     }
 
-    public Photo Downcast() {
-        return (Photo)this;
+    @Override
+    public JSON GetData() {
+        return null;
+    }
+
+    @Override
+    public void SetData(JSON data) {
+
     }
     public static Photo FromJSON(JSON json)
     {

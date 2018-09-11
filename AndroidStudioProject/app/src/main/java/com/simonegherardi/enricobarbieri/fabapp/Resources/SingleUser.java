@@ -3,9 +3,12 @@ package com.simonegherardi.enricobarbieri.fabapp.Resources;
 import com.simonegherardi.enricobarbieri.fabapp.PersonalData;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.SingleUserUploader;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.DummyRestable;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
 
 
 import java.util.ArrayList;
@@ -32,15 +35,52 @@ public class SingleUser extends User implements Comparable<SingleUser> {
     }
 
     @Override
-    public ResourceResponse Upload(IResourceConsumer callback) {
-        SingleUserUploader singleUserUploader = new SingleUserUploader(this, callback);
-        return singleUserUploader.Upload();
+    public Table GetTable() {
+        return Table.SingleUser;
     }
 
     @Override
-    public SingleUser Downcast() {
-        return ((SingleUser)this);
+    public JSON GetData() {
+        JSON data = new JSON();
+        JSON userData = new JSON();
+        JSON singleUserData = new JSON();
+        try {
+            data.Set("id", id);
+            userData.Set("data", data);
+            data.Set("phone", this.GetPhone());
+            data.Set("username", this.GetUsername());
+            data.Set("email", this.GetEmail());
+            singleUserData.Set("data", data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return singleUserData;
     }
+
+    @Override
+    public void SetData(JSON data) {
+        this.SetEmail(data.GetString("email"));
+        this.SetPhone(data.GetString("phone"));
+        this.SetUsername(data.GetString("username"));
+    }
+    @Override
+    public void Upload()
+    {
+        JSON data = new JSON();
+        JSON userData = new JSON();
+        try {
+            data.Set("id", id);
+            userData.Set("data", data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        WebServer.Main().GenericRequest(HttpMethod.POST, Table.User, userData, new DummyRestable());
+    }
+    /*@Override
+    public ResourceResponse Upload(IResourceConsumer callback) {
+        SingleUserUploader singleUserUploader = new SingleUserUploader(this, callback);
+        return singleUserUploader.Upload();
+    }*/
 
     public static SingleUser Empty()
     {
@@ -163,5 +203,17 @@ public class SingleUser extends User implements Comparable<SingleUser> {
     public String GetEmail()
     {
         return this.info.email;
+    }
+    public void SetPhone(String phone)
+    {
+        this.info.phone = phone;
+    }
+    public void SetUsername(String username)
+    {
+        this.info.username = username;
+    }
+    public void SetEmail(String email)
+    {
+        this.info.email = email;
     }
 }

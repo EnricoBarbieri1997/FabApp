@@ -4,6 +4,7 @@ import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,6 @@ public class GroupUser extends User {
         }
         return g;
     }
-    @Override
-    public GroupUser Downcast() {
-        return (GroupUser)this;
-    }
     private void Init(Integer id, String groupName)
     {
         this.id = id;
@@ -49,7 +46,17 @@ public class GroupUser extends User {
     }
 
     @Override
-    public ResourceResponse Upload(IResourceConsumer callback) {
+    public Table GetTable() {
         return null;
+    }
+
+    @Override
+    public JSON GetData() {
+        return null;
+    }
+
+    @Override
+    public void SetData(JSON data) {
+
     }
 }

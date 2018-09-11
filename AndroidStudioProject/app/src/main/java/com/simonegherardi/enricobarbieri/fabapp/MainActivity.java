@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -14,6 +15,8 @@ import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.DummyResourceCons
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.DummyRestable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.ResourceSynchronizer;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.Synchronizer;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
 
@@ -62,14 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 startPersonalProfileActivity();
            }
         });
-
-        DummyResourceConsumer a = new DummyResourceConsumer();
-        SingleUser singleUser = SingleUser.Empty();
-        singleUser.Init("prova", "3345859043", "prova@finto.it");
-        a.single = singleUser.Upload(a);
-        /*a.single = ResourceFlyweightAsync.Main().GetSingleUser(4, a);
-        a.group = ResourceFlyweightAsync.Main().GetGroup(2, a);
-        a.image = ResourceFlyweightAsync.Main().GetPhoto(3, a);*/
 
     }
 

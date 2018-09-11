@@ -1,5 +1,6 @@
 package com.simonegherardi.enricobarbieri.fabapp.flyweightasync;
 
+import com.simonegherardi.enricobarbieri.fabapp.Resources.Resource;
 import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
@@ -8,7 +9,7 @@ import com.simonegherardi.enricobarbieri.fabapp.restapi.RESTResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
 
-public class SingleUserUploader implements IRESTable
+/*public class SingleUserUploader implements IRESTable
 {
     SingleUser singleUser;
     IResourceConsumer callback;
@@ -25,7 +26,7 @@ public class SingleUserUploader implements IRESTable
 
     public ResourceResponse Upload()
     {
-        resourceId = WebServer.Main().GenericRequest(HttpMethod.PUT, Table.Resource, this);
+        resourceId = Resource.GetNewId(this);
         resourceResponse = new ResourceResponse();
         return resourceResponse;
     }
@@ -64,4 +65,4 @@ public class SingleUserUploader implements IRESTable
     public void Error(RESTResponse result) {
 
     }
-}
+}*/
