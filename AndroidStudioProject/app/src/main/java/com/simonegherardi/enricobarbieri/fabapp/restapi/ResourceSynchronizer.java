@@ -6,7 +6,10 @@ public class ResourceSynchronizer extends Synchronizer {
     {
         super(item);
     }
-
+    public ResourceSynchronizer(ISyncable item, ISyncObserver syncObserver)
+    {
+        super(item, syncObserver);
+    }
     @Override
     public void Upload()
     {

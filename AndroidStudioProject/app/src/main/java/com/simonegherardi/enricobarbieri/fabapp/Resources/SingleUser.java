@@ -48,13 +48,17 @@ public class SingleUser extends User implements Comparable<SingleUser> {
             data.Set("id", id);
             userData.Set("data", data);
             data.Set("phone", this.GetPhone());
-            data.Set("username", this.GetUsername());
+            data.Set("password", this.GetPassword());
             data.Set("email", this.GetEmail());
             singleUserData.Set("data", data);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return singleUserData;
+    }
+
+    private String GetPassword() {
+        return this.info.password;
     }
 
     @Override
@@ -101,15 +105,15 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         }
         return su;
     }
-    public void Init(Integer id, String username, String phone, String email)
+    public void Init(Integer id, String phone, String email, String password)
     {
         this.id = id;
-        this.info = this.info = new PersonalData(phone, email, username, "", "");
+        this.info = this.info = new PersonalData(phone, email, "", password, "", "");
 
     }
-    public void Init(String username, String phone, String email)
+    public void Init(String phone, String email, String password)
     {
-        this.info = this.info = new PersonalData(phone, email, username, "", "");
+        this.info = this.info = new PersonalData(phone, email, "", password, "", "");
     }
 
     public boolean isPrivate() {

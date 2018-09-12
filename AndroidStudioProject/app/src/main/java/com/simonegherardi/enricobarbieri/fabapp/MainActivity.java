@@ -1,30 +1,15 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
-import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 
 import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.DummyResourceConsumer;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.DummyRestable;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.ResourceSynchronizer;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.Synchronizer;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
+import com.simonegherardi.enricobarbieri.fabapp.fragments.RegisterFragment;
 
-import java.util.ArrayList;
-
-import static android.graphics.Color.BLACK;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
     private SingleUser test1;
 
@@ -35,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         getApplicationContext().startActivity(personalProfile);
     }*/
 
-    public void startPersonalProfileActivity() {
+    /*public void startPersonalProfileActivity() {
         final Intent personalProfile = new Intent(getApplicationContext(), PersonalProfileActivity.class);
 
         // tutto questo blocco verrà sostituito dal passaggio dell'id della risorsa
@@ -46,14 +31,19 @@ public class MainActivity extends AppCompatActivity {
         personalProfile.putExtra("surname", this.test1.info.surname);
 
         getApplicationContext().startActivity(personalProfile);
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        test1 = SingleUser.Empty();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        RegisterFragment fragment = new RegisterFragment();
+        fragmentTransaction.add(R.id.maincontainer, fragment);
+        fragmentTransaction.commit();
+        /*test1 = SingleUser.Empty();
         test1.Init("Shadowing","3345850585", "simone.gherardi2@gmail.com");
         test1.SetName("Simone");
         test1.SetSurname("Gherardi");
@@ -64,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startPersonalProfileActivity();
            }
-        });
+        });*/
 
     }
 
