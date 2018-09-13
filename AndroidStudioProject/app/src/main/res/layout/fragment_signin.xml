@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/identifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/signInTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/identifier"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/signInPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/identifier"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/signInButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/signInPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/signIn" />
+
+    <ProgressBar
+        android:id="@+id/signInProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_below="@+id/signInButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/signInTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/signIn"
+        android:textSize="@dimen/titleSize" />
+</RelativeLayout>

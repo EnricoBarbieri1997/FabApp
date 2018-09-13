@@ -1,18 +1,19 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
-import com.simonegherardi.enricobarbieri.fabapp.fragments.RegisterFragment;
+import com.simonegherardi.enricobarbieri.fabapp.fragments.SignInFragment;
+import com.simonegherardi.enricobarbieri.fabapp.fragments.SignUpFragment;
 
 public class MainActivity extends FragmentActivity {
 
     private SingleUser test1;
-
+    private FragmentManager fragmentManager;
 
     /*public void startPersonalProfileActivity()
     {
@@ -38,11 +39,9 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        RegisterFragment fragment = new RegisterFragment();
-        fragmentTransaction.add(R.id.maincontainer, fragment);
-        fragmentTransaction.commit();
+        fragmentManager = getSupportFragmentManager();
+        SignUpFragment fragment = new SignUpFragment();
+        AddFragment(fragment);
         /*test1 = SingleUser.Empty();
         test1.Init("Shadowing","3345850585", "simone.gherardi2@gmail.com");
         test1.SetName("Simone");
@@ -58,5 +57,42 @@ public class MainActivity extends FragmentActivity {
 
     }
 
+    public void SwapFragment(Fragment fragment)
+    {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack
+        transaction.replace(R.id.maincontainer, fragment);
+        transaction.addToBackStack(null);
+// Commit the transaction
+        transaction.commit();
+    }
+
+    private void ClearBackStack() {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
+            ClearBackStack(first.getId());
+        }
+    }
+
+    private void ClearBackStack(int fragmentId) {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack(fragmentId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
+
+    public void AddFragment(Fragment fragment)
+    {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.maincontainer, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void SetFragment(Fragment fragment)
+    {
+        ClearBackStack();
+        AddFragment(fragment);
+    }
 
 }

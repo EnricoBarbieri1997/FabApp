@@ -97,7 +97,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         SingleUser su = new SingleUser();
         try
         {
-            su.Init(json.GetInt("id"), json.GetString("username"), json.GetString("phone"), json.GetString("email"));
+            su.Init(json.GetInt("id"), json.GetString("phone"), json.GetString("email"), json.GetString("password"));
         }
         catch (JSONParseException e)
         {

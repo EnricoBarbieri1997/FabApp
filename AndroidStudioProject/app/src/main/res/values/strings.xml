@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">FabApp</string>
+
+    <string name="userInfoFile">com.simonegherardi.enricobarbieri.fabapp.userInfo</string>
+    <string name="emailKey">email</string>
+    <string name="phoneKey">phone</string>
+    <string name="idKey">id</string>
+    <string name="pictureKey">picture</string>
+    <string name="passwordKey">password</string>
+
     <string name="profile_image">Profile Image</string>
     <string name="profile_name">Profile Name</string>
     <string name="name">Simone</string>
@@ -14,6 +22,14 @@
     <string name="personal_profile">Personal Profile</string>
     <string name="done">DONE</string>
 
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="identifier">Phone or Email</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signIn">Sign In</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signInFragmentLink">Already registered? Sign in</string>
 </resources>

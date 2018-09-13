@@ -1,5 +1,7 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
+import com.simonegherardi.enricobarbieri.fabapp.Resources.Photo;
+
 public class PersonalData {
     public String phone;
     public String email;

@@ -8,15 +8,28 @@ public class WebServer
 {
     static private WebServer singleton;
     String url = "";
+    String base = "";
+    String basePath = "";
     public static WebServer Main()
     {
         if(WebServer.singleton == null)
         {
             WebServer.singleton = new WebServer();
             WebServer.singleton.SetUrl("https://www.casagioia.org/resttest/");
+            WebServer.singleton.SetBase("www.casagioia.org");
+            WebServer.singleton.SetBasePath("resttest");
         }
         return WebServer.singleton;
     }
+
+    private void SetBasePath(String basePath) {
+        this.basePath = basePath;
+    }
+
+    private void SetBase(String base) {
+        this.base = base;
+    }
+
     public void SetUrl(String url)
     {
         if(!url.endsWith("/"))
