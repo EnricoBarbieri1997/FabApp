@@ -9,6 +9,7 @@ import android.graphics.Point;
 public class JSON implements Parser, Composer
 {
     String str="";
+    int pointer = 0;
     public JSON()
     {
         this.str = "{}";
@@ -73,14 +74,70 @@ public class JSON implements Parser, Composer
     }
     private Point GetIndexes(String key)
     {
+        return this.GetIndexes(key, 0);
+    }
+    private Point GetNextIndexes()
+    {
         Point index;
-        Integer start = 0;
-        Integer graph = 0;
+        Integer start = pointer;
+        Integer graph = pointer;
+        do {
+            start = this.str.indexOf(":", start+1)+1;
+            graph = this.str.indexOf('{', graph+1);
+        }while(graph != -1 && graph < start);
+
+        index = GetEndAndUpdateStart(start);
+        return index;
+    }
+    private Point GetIndexes(String key, Integer startIndex)
+    {
+        Point index;
+        Integer start = startIndex;
+        Integer graph = startIndex;
         do {
             start = this.str.indexOf(key, start+1)+key.length()+2;
             graph = this.str.indexOf('{', graph+1);
         }while(graph != -1 && graph < start);
 
+        /*Integer end = start+1;
+        char ch = str.charAt(start);
+        switch(ch)
+        {
+            case '{':
+            case '[':
+                Integer count=1;
+                do
+                {
+                    Integer c = str.indexOf(ch+2, end);
+                    Integer o = str.indexOf(ch, end);
+                    if(o != -1 && o < c)
+                    {
+                        count++;
+                    }
+                    if(c != -1)
+                    {
+                        count--;
+                    }
+                    end = c+1;
+                }while(count != 0);
+                break;
+            case '"':
+                end = this.str.indexOf('"', start+1);
+                start++;
+                break;
+            default:
+                end = this.str.indexOf(',',start);
+                if(end == -1 || end < this.str.indexOf('}',start))
+                {
+                    end = this.str.indexOf('}',start);
+                }
+                break;
+        }*/
+        index = GetEndAndUpdateStart(start);
+        return index;
+    }
+    private Point GetEndAndUpdateStart(Integer start)
+    {
         Integer end = start+1;
         char ch = str.charAt(start);
         switch(ch)
@@ -115,14 +172,13 @@ public class JSON implements Parser, Composer
                 }
                 break;
         }
-        index = new Point(start, end);
-        return index;
-    }
 
+        return new Point(start, end);
+    }
     @Override
     public void Update(String key, String s) {
         Point indexes = GetIndexes(key);
-        if(indexes.x > -1)
+        if(indexes.x > 1)
         {
             str = this.str.substring(0,indexes.x) + s + this.str.substring(indexes.y, this.str.length());
         }
@@ -173,5 +229,28 @@ public class JSON implements Parser, Composer
     @Override
     public void Set(String s) {
         this.str = s;
+    }
+
+    public boolean HasNext()
+    {
+        if(GetNextIndexes().x > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    public JSON Next() throws JSONParseException
+    {
+        if(HasNext())
+        {
+            Point indexes = GetNextIndexes();
+            JSON data = new JSON(this.str.substring(indexes.x, indexes.y));
+            this.pointer = indexes.y;
+            return data;
+        }
+        else
+        {
+            throw new JSONParseException(this.str);
+        }
     }
 }

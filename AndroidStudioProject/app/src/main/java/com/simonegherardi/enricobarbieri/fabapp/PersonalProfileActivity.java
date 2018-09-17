@@ -1,7 +1,6 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
+import com.simonegherardi.enricobarbieri.fabapp.resources.SingleUser;
 
 import java.util.ArrayList;
 

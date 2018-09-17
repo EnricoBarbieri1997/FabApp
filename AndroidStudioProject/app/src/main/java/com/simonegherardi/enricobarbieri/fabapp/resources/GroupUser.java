@@ -1,7 +1,5 @@
-package com.simonegherardi.enricobarbieri.fabapp.Resources;
+package com.simonegherardi.enricobarbieri.fabapp.resources;
 
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;

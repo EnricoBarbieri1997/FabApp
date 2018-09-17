@@ -1,30 +1,25 @@
 package com.simonegherardi.enricobarbieri.fabapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.simonegherardi.enricobarbieri.fabapp.MainActivity;
 import com.simonegherardi.enricobarbieri.fabapp.R;
-import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
+import com.simonegherardi.enricobarbieri.fabapp.activity.FragmentAwareActivity;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.ISyncObserver;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.RESTResponse;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.ResourceSynchronizer;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
 
@@ -46,7 +41,6 @@ public class SignInFragment extends IntegratedFragment implements IRESTable {
     private TextView password;
     private ProgressBar progressBar;
     private Button login;
-    private MainActivity mainActivity;
     private RESTResponse response;
 
     private RESTResponse emailResponse;
@@ -59,16 +53,6 @@ public class SignInFragment extends IntegratedFragment implements IRESTable {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_signin, container, false);
-    }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            this.mainActivity = (MainActivity) context;
-        }
-        catch (final ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must be of type MainActivitty");
-        }
     }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -148,7 +132,7 @@ public class SignInFragment extends IntegratedFragment implements IRESTable {
                     response = this.emailResponse;
                 }
                 JSON userInfo = new JSON(response.GetResponse());
-                SharedPreferences.Editor editor = userSharedPref.edit();
+                SharedPreferences.Editor editor = this.parentActivity.userSharedPref.edit();
                 try {
                     editor.putInt(getString(R.string.idKey), userInfo.GetInt("id"));
                     editor.putString(getString(R.string.emailKey), userInfo.GetString("email"));
@@ -161,11 +145,9 @@ public class SignInFragment extends IntegratedFragment implements IRESTable {
                 }
                 editor.commit();
                 DisplayToast("Login successful");
-                ProfileFragment fragment = new ProfileFragment();
-                Bundle args = new Bundle();
-                args.putInt(getString(R.string.idKey), userSharedPref.getInt(getString(R.string.idKey), 0));
-                fragment.setArguments(args);
-                this.mainActivity.SwapFragment(fragment);
+
+                this.parentActivity.startActivity(this.parentActivity.GetBoardActivity());
+                this.parentActivity.finish();
             }
             else
             {

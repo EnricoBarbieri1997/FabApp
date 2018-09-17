@@ -1,6 +1,6 @@
 package com.simonegherardi.enricobarbieri.fabapp.flyweightasync;
 
-import com.simonegherardi.enricobarbieri.fabapp.Resources.Resource;
+import com.simonegherardi.enricobarbieri.fabapp.resources.Resource;
 
 /**
  * Created by Xxenr on 02/07/2018.

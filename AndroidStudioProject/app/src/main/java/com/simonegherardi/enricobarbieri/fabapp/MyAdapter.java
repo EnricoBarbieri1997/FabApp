@@ -70,7 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             super(view);
 
             title = (TextView)view.findViewById(R.id.title);
-            img = (ImageView) view.findViewById(R.id.img);
+            img = (ImageView) view.findViewById(R.id.cellImage);
         }
     }
 }

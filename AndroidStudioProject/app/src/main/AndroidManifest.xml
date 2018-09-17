@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +24,19 @@
         <activity android:name=".DisplayFullScreen" />
         <activity android:name=".PersonalProfileActivity" />
         <activity android:name=".SetPersonalDataActivity" />
-        <activity android:name=".PersonalDataActivity"></activity>
+        <activity android:name=".PersonalDataActivity" />
+        <activity android:name=".activity.FragmentAwareActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.BoardActivity"></activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
     </application>
 
 </manifest>

@@ -1,13 +1,11 @@
-package com.simonegherardi.enricobarbieri.fabapp.Resources;
-
-import com.simonegherardi.enricobarbieri.fabapp.Resources.Photo;
+package com.simonegherardi.enricobarbieri.fabapp.resources;
 
 import java.util.ArrayList;
 
 public class PostedPhotos{
-    protected ArrayList<Photo>  Photolist;
+    protected ArrayList<Image>  Photolist;
 
-    public void deletePhoto(Photo deleted)
+    public void deletePhoto(Image deleted)
     {
         /*deleted.idPhotograpghed.myPhotos.Photolist.remove(deleted);
         deleted.idPhotographer.postedPhotos.Photolist.remove(deleted);*/

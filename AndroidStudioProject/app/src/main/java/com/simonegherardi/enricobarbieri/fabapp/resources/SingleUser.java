@@ -1,8 +1,6 @@
-package com.simonegherardi.enricobarbieri.fabapp.Resources;
+package com.simonegherardi.enricobarbieri.fabapp.resources;
 
 import com.simonegherardi.enricobarbieri.fabapp.PersonalData;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.DummyRestable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
@@ -16,12 +14,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SingleUser extends User implements Comparable<SingleUser> {
-    public PersonalData info;
+    public PersonalData info = new PersonalData();
     protected PostedPhotos postedPhotos;
     protected MyPhotos myPhotos;
     protected List<SingleUser> followedUsers;
     protected List<GroupUser> followedGroups;
-    protected List<Photo> likedPhotos;
+    protected List<Image> likedPhotos;
     protected boolean isPrivate;
     private SingleUser()
     {
@@ -97,7 +95,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         SingleUser su = new SingleUser();
         try
         {
-            su.Init(json.GetInt("id"), json.GetString("phone"), json.GetString("email"), json.GetString("password"));
+            su.Init(json.GetInt("id"), json.GetString("phone"), json.GetString("email"), json.GetInt("picture"), json.GetString("password"));
         }
         catch (JSONParseException e)
         {
@@ -105,22 +103,22 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         }
         return su;
     }
-    public void Init(Integer id, String phone, String email, String password)
+    public void Init(Integer id, String phone, String email, int picture, String password)
     {
         this.id = id;
-        this.info = this.info = new PersonalData(phone, email, "", password, "", "");
+        this.info = this.info = new PersonalData(phone, email, picture, "", password, "", "");
 
     }
-    public void Init(String phone, String email, String password)
+    public void Init(String phone, String email, int picture, String password)
     {
-        this.info = this.info = new PersonalData(phone, email, "", password, "", "");
+        this.info = this.info = new PersonalData(phone, email, picture, "", password, "", "");
     }
 
     public boolean isPrivate() {
         return isPrivate;
     }
 
-    public void acceptOrDeny(Photo newPhoto, SingleUser photographer)
+    public void acceptOrDeny(Image newPhoto, SingleUser photographer)
     {
         // Display photo
         Scanner scanner = new Scanner(System.in);
@@ -136,7 +134,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         }
 
     }
-    public void addPhoto(Photo newPhoto, SingleUser owner)
+    public void addPhoto(Image newPhoto, SingleUser owner)
     {
         this.postedPhotos.Photolist.add(newPhoto);
         if (owner.isPrivate())
@@ -149,7 +147,7 @@ public class SingleUser extends User implements Comparable<SingleUser> {
         }
     }
 
-    public void like(Photo likedPhoto)
+    public void like(Image likedPhoto)
     {
         likedPhoto.likes++;
         this.likedPhotos.add(likedPhoto);
@@ -202,11 +200,15 @@ public class SingleUser extends User implements Comparable<SingleUser> {
     }
     public String GetUsername()
     {
-        return this.info.username;
+        return this.info.email.substring(0, this.info.email.indexOf('@'));
     }
     public String GetEmail()
     {
         return this.info.email;
+    }
+    public int GetPicture()
+    {
+        return this.info.picture;
     }
     public void SetPhone(String phone)
     {

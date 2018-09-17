@@ -1,24 +1,35 @@
 package com.simonegherardi.enricobarbieri.fabapp.fragments;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.simonegherardi.enricobarbieri.fabapp.R;
-import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
+import com.simonegherardi.enricobarbieri.fabapp.activity.ProfileActivity;
+import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourcesTypes;
+import com.simonegherardi.enricobarbieri.fabapp.resources.Image;
+import com.simonegherardi.enricobarbieri.fabapp.resources.SingleUser;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.RESTResponse;
+
+import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends IntegratedFragment implements IResourceConsumer{
+
     private SingleUser user;
+    private Image profileImage;
     private int userId;
     private boolean isUser;
     private ImageView picture;
@@ -30,10 +41,6 @@ public class ProfileFragment extends IntegratedFragment implements IResourceCons
     {
         super.onCreate(savedInstanceState);
         userId = getArguments().getInt(getString(R.string.idKey), 0);
-        if(userId == userSharedPref.getInt(getString(R.string.idKey),0))
-        {
-            isUser = true;
-        }
     }
 
     @Override
@@ -50,19 +57,25 @@ public class ProfileFragment extends IntegratedFragment implements IResourceCons
         phone = getView().findViewById(R.id.profilePhone);
         picture = getView().findViewById(R.id.profilePicture);
 
-        picture.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-            }
-        });
-
         ResourceFlyweightAsync.Main().GetSingleUser(this.userId, this);
     }
 
     @Override
     public void OnResourceReady(ResourceResponse response) {
-        this.user = (SingleUser)response.GetResource();
-        this.SetTextTextView(this.email,user.GetEmail());
-        this.SetTextTextView(this.phone,user.GetPhone());
+        switch (response.GetResourceType())
+        {
+            case SingleUser:
+                this.user = (SingleUser)response.GetResource();
+                if(user.GetPicture() > 0)
+                {
+                    ResourceFlyweightAsync.Main().GetPhoto(user.GetPicture(), this);
+                }
+                this.SetTextTextView(this.email,user.GetUsername());
+                this.SetTextTextView(this.phone,user.GetPhone());
+                break;
+            case Image:
+                this.profileImage = (Image)response.GetResource();
+                SetImageInView(profileImage, picture);
+        }
     }
 }

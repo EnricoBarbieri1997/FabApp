@@ -1,7 +1,5 @@
 package com.simonegherardi.enricobarbieri.fabapp;
 
-import com.simonegherardi.enricobarbieri.fabapp.Resources.Photo;
-
 public class PersonalData {
     public String phone;
     public String email;
@@ -9,13 +7,14 @@ public class PersonalData {
     public String name;
     public String surname;
     public String password;
+    public int picture;
 
 
     public PersonalData()
     {
     }
 
-    public PersonalData(String phone, String email, String username, String password, String name, String surname)
+    public PersonalData(String phone, String email, int picture, String username, String password, String name, String surname)
     {
         this.phone=phone;
         this.email=email;
@@ -23,5 +22,6 @@ public class PersonalData {
         this.name=name;
         this.surname=surname;
         this.password = password;
+        this.picture = picture;
     }
 }

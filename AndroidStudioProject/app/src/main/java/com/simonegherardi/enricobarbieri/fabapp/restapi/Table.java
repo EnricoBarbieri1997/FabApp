@@ -9,7 +9,10 @@ public enum Table {
     Image("Image"),
     User("User"),
     Group("GroupUser"),
-    SingleUser("SingleUser");
+    SingleUser("SingleUser"),
+    userImageId("userImageId"),
+    userSearchList("userSearchList"),
+    upload("upload");
 
     private String table;
 

@@ -29,7 +29,11 @@
     <string name="signUp">Sign Up</string>
     <string name="signIn">Sign In</string>
 
+    <string name="image_gallery_menu_refresh_title">Refresh images</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signInFragmentLink">Already registered? Sign in</string>
+    <string name="profile_button">profile button</string>
+    <string name="search_button">search button</string>
 </resources>

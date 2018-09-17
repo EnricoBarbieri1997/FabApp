@@ -1,9 +1,9 @@
 package com.simonegherardi.enricobarbieri.fabapp.flyweightasync;
 
-import com.simonegherardi.enricobarbieri.fabapp.Resources.GroupUser;
-import com.simonegherardi.enricobarbieri.fabapp.Resources.Photo;
-import com.simonegherardi.enricobarbieri.fabapp.Resources.Resource;
-import com.simonegherardi.enricobarbieri.fabapp.Resources.SingleUser;
+import com.simonegherardi.enricobarbieri.fabapp.resources.GroupUser;
+import com.simonegherardi.enricobarbieri.fabapp.resources.Image;
+import com.simonegherardi.enricobarbieri.fabapp.resources.Resource;
+import com.simonegherardi.enricobarbieri.fabapp.resources.SingleUser;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
@@ -70,7 +70,7 @@ public class ResourceFlyweightAsync implements IRESTable{
     public ResourceResponse GetPhoto(Integer id, IResourceConsumer callback)
     {
         ResourceResponse response = new ResourceResponse();
-        response.SetResourceType(ResourcesTypes.Photo);
+        response.SetResourceType(ResourcesTypes.Image);
         if(this.resources.containsKey(id))
         {
             response.SetResource(this.resources.get(id));
@@ -115,8 +115,8 @@ public class ResourceFlyweightAsync implements IRESTable{
             case GroupUser:
                 resource = ResourceFlyweightAsync.Main().Intern(GroupUser.FromJSON(new JSON(result)));
                 break;
-            case Photo:
-                resource = ResourceFlyweightAsync.Main().Intern(Photo.FromJSON(new JSON(result)));
+            case Image:
+                resource = ResourceFlyweightAsync.Main().Intern(Image.FromJSON(new JSON(result)));
                 break;
             default:
                 resource = null;

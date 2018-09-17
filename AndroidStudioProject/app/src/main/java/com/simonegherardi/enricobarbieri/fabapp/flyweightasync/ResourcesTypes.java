@@ -7,6 +7,6 @@ package com.simonegherardi.enricobarbieri.fabapp.flyweightasync;
 public enum ResourcesTypes {
     SingleUser,
     GroupUser,
-    Photo,
+    Image,
     User
 }

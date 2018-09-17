@@ -23,6 +23,7 @@ public class RESTRequest implements Runnable
     private String method;
     private IRESTable callback;
     private RESTResponse response;
+    String contentType = "application/x-www-form-urlencoded";
 
     public RESTResponse Init(JSON body, HttpMethod method, IRESTable callback, String baseUrl, String ... params)
     {
@@ -49,7 +50,10 @@ public class RESTRequest implements Runnable
     public void setMethod(HttpMethod method) {
         this.method = method.GetMethod();
     }
-
+    public void setContentType(String contentType)
+    {
+        this.contentType = contentType;
+    }
     public void setCallback(IRESTable callback) {
         this.callback = callback;
     }
@@ -67,7 +71,7 @@ public class RESTRequest implements Runnable
             if(!method.equals(HttpMethod.GET.GetMethod()))
             {
                 connection.setRequestProperty("Content-Type",
-                        "application/x-www-form-urlencoded");
+                        contentType);
 
                 connection.setRequestProperty("Content-Length",
                         Integer.toString(urlParameters.getBytes().length));

@@ -1,5 +1,7 @@
 package com.simonegherardi.enricobarbieri.fabapp.restapi;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Xxenr on 16/06/2018.
  */
@@ -86,7 +88,23 @@ public class WebServer
         this.StartRequest(rr);
         return response;
     }
-    private void StartRequest(RESTRequest rr)
+    public RESTResponse GenericRequest(HttpMethod method, Table table, JSON body, String contentType, IRESTable callback)
+    {
+        RESTRequest rr = new RESTRequest();
+        RESTResponse response = rr.Init(body, method, callback, "");
+        rr.setUrl(this.url, table.GetTable());
+        rr.setContentType(contentType);
+        this.StartRequest(rr);
+        return response;
+    }
+    public RESTResponse BitmapUpload(Bitmap photo, IRESTable callback)
+    {
+        RESTBitmapUpload rr = new RESTBitmapUpload();
+        RESTResponse response = rr.Init(photo, callback);
+        this.StartRequest(rr);
+        return response;
+    }
+    private void StartRequest(Runnable rr)
     {
         Thread t = new Thread(rr);
         t.start();

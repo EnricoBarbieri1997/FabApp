@@ -1,15 +1,8 @@
-package com.simonegherardi.enricobarbieri.fabapp.Resources;
+package com.simonegherardi.enricobarbieri.fabapp.resources;
 
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
-import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.ISyncable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.RESTResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
 
 abstract public class Resource implements ISyncable
 {
