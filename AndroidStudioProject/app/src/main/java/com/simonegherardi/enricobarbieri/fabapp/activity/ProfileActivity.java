@@ -22,6 +22,7 @@ import com.simonegherardi.enricobarbieri.fabapp.fragments.ImageGalleryFragment;
 import com.simonegherardi.enricobarbieri.fabapp.resources.Image;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.ISyncObserver;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.RESTResponse;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.ResourceSynchronizer;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.Synchronizer;
@@ -32,7 +33,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ProfileActivity extends FragmentAwareActivity implements IRESTable {
+public class ProfileActivity extends FragmentAwareActivity implements IRESTable, ISyncObserver {
     public static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
     private FloatingActionButton button;
@@ -77,7 +78,7 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable 
                 @Override
                 public void onClick(View v) {
                     isUploading = true;
-                    button.setClickable(false);
+                    SetButtonClickable(false);
                     DispatchTakePictureIntent();
                 }
             });
@@ -129,10 +130,16 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable 
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            galleryAddPic();
-            progressBar.setVisibility(View.VISIBLE);
-            imageResponse = WebServer.Main().BitmapUpload(CurrentFileToBitmap(), this);
+        if (requestCode == REQUEST_TAKE_PHOTO) {
+            if(resultCode == RESULT_OK) {
+                galleryAddPic();
+                SetProgressBarVisibility(View.VISIBLE);
+                imageResponse = WebServer.Main().BitmapUpload(CurrentFileToBitmap(), this);
+            }
+            else
+            {
+                SetButtonClickable(true);
+            }
         }
     }
     private Bitmap CurrentFileToBitmap()
@@ -208,27 +215,73 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable 
             image.SetUrl(url);
             image.SetPhotographed(userId);
             image.SetPhotographer(0);
-            ResourceSynchronizer is = new ResourceSynchronizer(image);
+            ResourceSynchronizer is = new ResourceSynchronizer(image, this);
             is.Upload();
-            button.setClickable(true);
-            this.isUploading = false;
-            progressBar.setVisibility(View.INVISIBLE);
-            UpdateImageList();
         }
     }
-    private void UpdateImageList()
+    private void SetProgressBarVisibility(final int visibility)
     {
         runOnUiThread(new Runnable() {
             public void run() {
-                galleryFragment.imageRefresh.setRefreshing(true);
-                galleryFragment.UpdateImageList();
+                progressBar.setVisibility(visibility);
+            }
+        });
+    }
+    private void SetButtonClickable(final boolean status)
+    {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                button.setClickable(status);
             }
         });
     }
 
     @Override
     public void Error(RESTResponse response) {
-        progressBar.setVisibility(View.INVISIBLE);
-        button.setClickable(true);
+        SetProgressBarVisibility(View.INVISIBLE);
+        SetButtonClickable(true);
+    }
+
+    @Override
+    public void UploadStart() {
+
+    }
+
+    @Override
+    public void UpdateStart() {
+
+    }
+
+    @Override
+    public void DownloadStart() {
+
+    }
+
+    @Override
+    public void DeleteStart() {
+
+    }
+
+    @Override
+    public void UploadComplete(boolean result) {
+        SetButtonClickable(true);
+        this.isUploading = false;
+        SetProgressBarVisibility(View.INVISIBLE);
+        galleryFragment.UpdateImageList();
+    }
+
+    @Override
+    public void UpdateComplete(boolean result) {
+
+    }
+
+    @Override
+    public void DownloadComplete(boolean result) {
+
+    }
+
+    @Override
+    public void DeleteComplete(boolean result) {
+
     }
 }

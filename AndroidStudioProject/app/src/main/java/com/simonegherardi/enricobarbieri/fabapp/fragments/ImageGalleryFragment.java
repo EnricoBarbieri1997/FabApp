@@ -83,14 +83,14 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
         {
             imageList.add(image);
         }
-        if(imageCount <= 0)
-        {
-            imageRefresh.setRefreshing(false);
+        if(imageCount <= 0) {
+            SetRefreshing(false);
             UpdateRecyclerView(adapter);
         }
     }
     public RESTResponse UpdateImageList()
     {
+        SetRefreshing(true);
         return WebServer.Main().GenericRequest(HttpMethod.GET, Table.userImageId, "userId", userId.toString(), this);
     }
     @Override
@@ -113,17 +113,32 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
         }
         catch (Exception e1)
         {
+            ArrayList<Integer> ids = new ArrayList<>();
             while(imagesId.HasNext())
             {
                 try {
                     id = imagesId.Next().GetInt("id");
                     imageCount++;
-                    ResourceFlyweightAsync.Main().GetPhoto(id, this);
+                    ids.add(id);
                 } catch (JSONParseException e) {
                     e.printStackTrace();
                 }
             }
+            for(int i = 0; i < ids.size(); i++)
+            {
+                ResourceFlyweightAsync.Main().GetPhoto(ids.get(i), this);
+            }
         }
+    }
+
+    public void SetRefreshing(final boolean status)
+    {
+        this.parentActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                imageRefresh.setRefreshing(status);
+            }
+        });
     }
     /*
      * Listen for option item selections so that we receive a notification

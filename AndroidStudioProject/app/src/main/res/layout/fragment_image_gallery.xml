@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/imageGalleryRefresh"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v4.widget.SwipeRefreshLayout
+android:id="@+id/imageGalleryRefresh"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageGallery"
-            android:scrollbars="vertical">
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageGallery"
+        android:scrollbars="vertical">
 
-        </android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-
-    <!--menu xmlns:android="http://schemas.android.com/apk/res/android" >
-        <item
-            android:id="@+id/image_gallery_menu_refresh"
-            android:showAsAction="never"
-            android:title="@string/image_gallery_menu_refresh_title"/>
-    </menu-->
-</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
