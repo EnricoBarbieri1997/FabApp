@@ -73,7 +73,7 @@ public class UsersSearchFragment extends IntegratedFragment implements IRESTable
                 SearchUser(s.toString());
             }
         });
-        adapter = new UsersSearchAdapter(this.parentActivity.getApplicationContext(), this.usersList);
+        adapter = new UsersSearchAdapter(this.parentActivity, this.usersList);
         this.SetUpRyclerView(R.id.users_list, 1, adapter);
         SearchUser("");
     }

@@ -1,6 +1,7 @@
 package com.simonegherardi.enricobarbieri.fabapp.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -84,6 +85,18 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
             });
         }
     }
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+
+       getSharedPreferences(getString(R.string.imageUploadInfo), Context.MODE_PRIVATE).edit().putString("imagePath", this.mCurrentPhotoPath).commit();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        this.mCurrentPhotoPath = getSharedPreferences(getString(R.string.imageUploadInfo), Context.MODE_PRIVATE).getString("imagePath", "");
+    }
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -96,7 +109,7 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
+        this.mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
     public void DispatchTakePictureIntent() {
@@ -130,6 +143,7 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        this.mCurrentPhotoPath = getSharedPreferences(getString(R.string.imageUploadInfo), Context.MODE_PRIVATE).getString("imagePath", "");
         if (requestCode == REQUEST_TAKE_PHOTO) {
             if(resultCode == RESULT_OK) {
                 galleryAddPic();

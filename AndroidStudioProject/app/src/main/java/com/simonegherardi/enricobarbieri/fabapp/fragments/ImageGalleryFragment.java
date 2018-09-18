@@ -70,7 +70,7 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
 
     public void SetUpRyclerView()
     {
-        adapter = new ImageGalleryAdapter(getActivity().getApplicationContext(), imageList);
+        adapter = new ImageGalleryAdapter(this.parentActivity, imageList);
         SetUpRyclerView(R.id.imageGallery, 2, adapter);
 
     }

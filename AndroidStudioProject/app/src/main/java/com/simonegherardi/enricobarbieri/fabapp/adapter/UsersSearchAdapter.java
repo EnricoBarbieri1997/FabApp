@@ -1,5 +1,6 @@
 package com.simonegherardi.enricobarbieri.fabapp.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,10 +23,12 @@ import java.util.ArrayList;
 public class UsersSearchAdapter extends RecyclerView.Adapter<UsersSearchAdapter.UserEmailHolder> {
     private ArrayList<SingleUser> usersList;
     private Context context;
+    private Activity activity;
 
     public UsersSearchAdapter(Context context, ArrayList<SingleUser> usersList) {
         this.usersList = usersList;
-        this.context = context;
+        this.activity = (Activity)context;
+        this.context = this.activity.getApplicationContext();
     }
 
     @Override
@@ -42,7 +45,7 @@ public class UsersSearchAdapter extends RecyclerView.Adapter<UsersSearchAdapter.
         Bundle b = new Bundle();
         b.putInt(context.getString(R.string.idKey), userId); //Your id
         intent.putExtras(b);
-        context.startActivity(intent);
+        this.activity.startActivity(intent);
     }
 
     @Override

@@ -36,4 +36,5 @@
     <string name="signInFragmentLink">Already registered? Sign in</string>
     <string name="profile_button">profile button</string>
     <string name="search_button">search button</string>
+    <string name="imageUploadInfo">imageUploadInfo</string>
 </resources>

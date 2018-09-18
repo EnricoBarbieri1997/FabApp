@@ -1,5 +1,6 @@
 package com.simonegherardi.enricobarbieri.fabapp.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -25,9 +26,11 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
 {
     private ArrayList<Image> galleryList;
     private Context context;
+    private Activity activity;
 
     public ImageGalleryAdapter(Context context, ArrayList<Image> galleryList) {
         this.galleryList = galleryList;
+        this.activity = (Activity)context;
         this.context = context;
     }
 
@@ -43,7 +46,7 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
     {
         final Intent fullscreen = new Intent(context , DisplayFullScreen.class);
         fullscreen.putExtra("image_id",id_photo);
-        context.startActivity(fullscreen);
+        this.activity.startActivity(fullscreen);
     }
 
     @Override
