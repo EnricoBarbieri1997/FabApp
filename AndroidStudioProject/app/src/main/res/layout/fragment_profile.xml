@@ -14,7 +14,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_margin="30dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true">
 
         <!--ImageView
             android:id="@+id/profilePicture"
@@ -34,41 +35,51 @@
             tools:layout_editor_absoluteX="64dp"
             tools:layout_editor_absoluteY="35dp"
             app:civ_border_width="2dp"
-            app:civ_border_color="#FFFFFFFF"/>
+            app:civ_border_color="#FFFFFFFF"
+            android:layout_alignParentLeft="true" />
 
         <RelativeLayout
+            android:id="@+id/profileInfoLeftContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/profilePicture">
 
             <TextView
                 android:id="@+id/profileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="false"
                 android:text="Email"
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/profilePhone"
+            <Button
+                android:id="@+id/friendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentRight="false"
-                android:layout_alignParentTop="false"
-                android:layout_alignWithParentIfMissing="false"
-                android:layout_below="@id/profileEmail"
-                android:layout_centerHorizontal="false"
-                android:layout_centerInParent="false"
-                android:layout_centerVertical="false"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Phone" />
+                android:layout_below="@+id/profileEmail"
+                android:text="Send friend request"
+                android:textSize="12sp">
+
+            </Button>
+
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                android:id="@+id/pendingFriendRequestsButton"/>
+        </LinearLayout>
 
     </RelativeLayout>
 

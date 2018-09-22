@@ -13,6 +13,8 @@ import android.os.Bundle;
 import com.simonegherardi.enricobarbieri.fabapp.R;
 import com.simonegherardi.enricobarbieri.fabapp.fragments.ImageGalleryFragment;
 import com.simonegherardi.enricobarbieri.fabapp.fragments.ProfileFragment;
+import com.simonegherardi.enricobarbieri.fabapp.requester.NewsFeedImageRequester;
+import com.simonegherardi.enricobarbieri.fabapp.requester.ProfileImageRequester;
 
 public abstract class FragmentAwareActivity extends FragmentActivity {
 
@@ -79,9 +81,18 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
     protected Fragment GetProfileGalleryFragment(int id)
     {
         ImageGalleryFragment fragment = new ImageGalleryFragment();
-        Bundle args = new Bundle();
-        args.putInt(getString(R.string.idKey), id);
-        fragment.setArguments(args);
+        fragment.imageRequester = new ProfileImageRequester();
+        fragment.imageRequester.SetUserId(id);
+        fragment.imageRequester.SetCallback(fragment);
+        return fragment;
+    }
+    public Fragment GetNewsFeedImageGalleryFragment(int id)
+    {
+        ImageGalleryFragment fragment = new ImageGalleryFragment();
+        fragment.SetColumnCount(1);
+        fragment.imageRequester = new NewsFeedImageRequester();
+        fragment.imageRequester.SetUserId(id);
+        fragment.imageRequester.SetCallback(fragment);
         return fragment;
     }
     public Intent GetProfileActivity(int id)

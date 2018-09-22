@@ -87,10 +87,10 @@ public class Image extends Resource implements Comparable<Image> {
             return 0;
         } else if (this.id < o.id)
         {
-            return -1;
+            return 1;
         } else
         {
-            return 1;
+            return -1;
         }
     }
 

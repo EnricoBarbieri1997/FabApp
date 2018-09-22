@@ -12,15 +12,23 @@
         android:id="@+id/menu_search"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="50"
+        android:layout_weight="33"
         android:src="@android:drawable/ic_menu_search"
         android:contentDescription="@string/search_button"/>
+
+    <ImageView
+        android:id="@+id/menu_news_feed"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="34"
+        android:contentDescription="@string/news_feed_button"
+        android:src="@android:drawable/ic_menu_camera" />
 
     <ImageView
         android:id="@+id/menu_profile"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="50"
+        android:layout_weight="33"
         android:src="@drawable/ic_personal_profile_imagebutton"
         android:contentDescription="@string/profile_button" />
 </LinearLayout>

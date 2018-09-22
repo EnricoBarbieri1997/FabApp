@@ -17,6 +17,6 @@ public class BoardActivity extends FragmentAwareActivity {
         this.container = R.id.board_menu;
         this.AddFragment(new MenuFragment());
         this.container = R.id.board_view;
-        this.AddFragment(new UsersSearchFragment());
+        this.AddFragment(GetNewsFeedImageGalleryFragment(userSharedPref.getInt(getString(R.string.idKey),0)));
     }
 }

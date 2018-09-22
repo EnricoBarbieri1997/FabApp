@@ -56,7 +56,6 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
         Glide
                 .with(context)
                 .load(galleryList.get(i).GetUrl())
-                .thumbnail(0.1f)
                 .into(viewHolder.image);
 
         viewHolder.image.setOnClickListener(new View.OnClickListener() {

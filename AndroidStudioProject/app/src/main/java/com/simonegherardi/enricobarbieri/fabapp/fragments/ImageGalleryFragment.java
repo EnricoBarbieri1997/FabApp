@@ -3,28 +3,23 @@ package com.simonegherardi.enricobarbieri.fabapp.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.simonegherardi.enricobarbieri.fabapp.R;
-import com.simonegherardi.enricobarbieri.fabapp.activity.FragmentAwareActivity;
 import com.simonegherardi.enricobarbieri.fabapp.adapter.ImageGalleryAdapter;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
+import com.simonegherardi.enricobarbieri.fabapp.requester.UserImageRequester;
 import com.simonegherardi.enricobarbieri.fabapp.resources.Image;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSON;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.JSONParseException;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.RESTResponse;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.Table;
-import com.simonegherardi.enricobarbieri.fabapp.restapi.WebServer;
+import com.simonegherardi.enricobarbieri.fabapp.utility.SortedArrayList;
 
 import java.util.ArrayList;
 
@@ -33,10 +28,11 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Image> imageList;
-    private Integer userId;
+    private Integer colCount = 2;
+    private SortedArrayList<Image> imageList;
     private Integer imageCount = 0;
     public SwipeRefreshLayout imageRefresh;
+    public UserImageRequester imageRequester;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,11 +44,9 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        imageList = new ArrayList<>();
+        imageList = new SortedArrayList<>();
 
         SetUpRyclerView();
-
-        userId = getArguments().getInt(getString(R.string.idKey), 0);
 
         imageRefresh = this.parentActivity.findViewById(R.id.imageGalleryRefresh);
 
@@ -67,11 +61,14 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
 
         UpdateImageList();
     }
-
+    public void SetColumnCount(Integer col)
+    {
+        this.colCount = col;
+    }
     public void SetUpRyclerView()
     {
         adapter = new ImageGalleryAdapter(this.parentActivity, imageList);
-        SetUpRyclerView(R.id.imageGallery, 2, adapter);
+        SetUpRyclerView(R.id.imageGallery, colCount, adapter);
 
     }
     @Override
@@ -81,7 +78,7 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
         imageCount--;
         if(!imageList.contains(image))
         {
-            imageList.add(image);
+            imageList.insertSorted(image);
         }
         if(imageCount <= 0) {
             SetRefreshing(false);
@@ -91,7 +88,7 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
     public RESTResponse UpdateImageList()
     {
         SetRefreshing(true);
-        return WebServer.Main().GenericRequest(HttpMethod.GET, Table.userImageId, "userId", userId.toString(), this);
+        return imageRequester.Request();
     }
     @Override
     public void Success(RESTResponse response) {
@@ -104,6 +101,10 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
     }
     private void RequestImages(JSON imagesId)
     {
+        if(imagesId.GetValue().equals(""))
+        {
+            SetRefreshing(false);
+        }
         int id = -1;
         try
         {
