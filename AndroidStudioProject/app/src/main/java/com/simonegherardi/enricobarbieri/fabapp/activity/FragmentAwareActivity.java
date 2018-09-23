@@ -21,12 +21,14 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
     protected FragmentManager fragmentManager;
     protected int container = 0;
     public SharedPreferences userSharedPref;
+    protected Integer loggedUserId = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         fragmentManager = getSupportFragmentManager();
         this.userSharedPref = this.userSharedPref = getSharedPreferences(getString(R.string.userInfoFile), Context.MODE_PRIVATE);
+        loggedUserId = userSharedPref.getInt(getString(R.string.idKey),0);
     }
     public void SwapFragment(Fragment fragment)
     {
@@ -45,7 +47,7 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
         fragmentTransaction.replace(container, fragment);
         fragmentTransaction.commit();
     }
-    private void ClearBackStack() {
+    public void ClearBackStack() {
         if (fragmentManager.getBackStackEntryCount() > 0) {
             FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
             ClearBackStack(first.getId());
@@ -55,6 +57,13 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
     private void ClearBackStack(int fragmentId) {
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack(fragmentId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
+
+    public void PopVisible()
+    {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
         }
     }
 
@@ -105,7 +114,7 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
     }
     public Intent GetActiveProfileActivity()
     {
-        return GetProfileActivity(userSharedPref.getInt(getString(R.string.idKey),0));
+        return GetProfileActivity(this.loggedUserId);
     }
     public Intent GetBoardActivity()
     {
