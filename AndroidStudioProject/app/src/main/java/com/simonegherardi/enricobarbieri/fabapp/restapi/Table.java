@@ -10,8 +10,11 @@ public enum Table {
     User("User"),
     Group("GroupUser"),
     SingleUser("SingleUser"),
+    Follow("Follow"),
     userImageId("userImageId"),
+    userFriendsImageId("userFriendsImageId"),
     userSearchList("userSearchList"),
+    pendingFriendRequests("pendingFriendRequests"),
     upload("upload");
 
     private String table;

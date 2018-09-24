@@ -13,18 +13,22 @@ import android.os.Bundle;
 import com.simonegherardi.enricobarbieri.fabapp.R;
 import com.simonegherardi.enricobarbieri.fabapp.fragments.ImageGalleryFragment;
 import com.simonegherardi.enricobarbieri.fabapp.fragments.ProfileFragment;
+import com.simonegherardi.enricobarbieri.fabapp.requester.NewsFeedImageRequester;
+import com.simonegherardi.enricobarbieri.fabapp.requester.ProfileImageRequester;
 
 public abstract class FragmentAwareActivity extends FragmentActivity {
 
     protected FragmentManager fragmentManager;
     protected int container = 0;
     public SharedPreferences userSharedPref;
+    protected Integer loggedUserId = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         fragmentManager = getSupportFragmentManager();
         this.userSharedPref = this.userSharedPref = getSharedPreferences(getString(R.string.userInfoFile), Context.MODE_PRIVATE);
+        loggedUserId = userSharedPref.getInt(getString(R.string.idKey),0);
     }
     public void SwapFragment(Fragment fragment)
     {
@@ -43,7 +47,7 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
         fragmentTransaction.replace(container, fragment);
         fragmentTransaction.commit();
     }
-    private void ClearBackStack() {
+    public void ClearBackStack() {
         if (fragmentManager.getBackStackEntryCount() > 0) {
             FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
             ClearBackStack(first.getId());
@@ -53,6 +57,13 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
     private void ClearBackStack(int fragmentId) {
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack(fragmentId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
+
+    public void PopVisible()
+    {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
         }
     }
 
@@ -79,9 +90,18 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
     protected Fragment GetProfileGalleryFragment(int id)
     {
         ImageGalleryFragment fragment = new ImageGalleryFragment();
-        Bundle args = new Bundle();
-        args.putInt(getString(R.string.idKey), id);
-        fragment.setArguments(args);
+        fragment.imageRequester = new ProfileImageRequester();
+        fragment.imageRequester.SetUserId(id);
+        fragment.imageRequester.SetCallback(fragment);
+        return fragment;
+    }
+    public Fragment GetNewsFeedImageGalleryFragment(int id)
+    {
+        ImageGalleryFragment fragment = new ImageGalleryFragment();
+        fragment.SetColumnCount(1);
+        fragment.imageRequester = new NewsFeedImageRequester();
+        fragment.imageRequester.SetUserId(id);
+        fragment.imageRequester.SetCallback(fragment);
         return fragment;
     }
     public Intent GetProfileActivity(int id)
@@ -94,7 +114,7 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
     }
     public Intent GetActiveProfileActivity()
     {
-        return GetProfileActivity(userSharedPref.getInt(getString(R.string.idKey),0));
+        return GetProfileActivity(this.loggedUserId);
     }
     public Intent GetBoardActivity()
     {

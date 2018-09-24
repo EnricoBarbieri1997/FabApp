@@ -16,6 +16,7 @@ import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweight
 public class MenuFragment extends IntegratedFragment {
 
     private ImageView searchButton;
+    private ImageView newsFeedButton;
     private ImageView profileButton;
 
     public MenuFragment() {
@@ -39,6 +40,7 @@ public class MenuFragment extends IntegratedFragment {
         super.onCreate(savedInstanceState);
 
         this.searchButton = this.parentActivity.findViewById(R.id.menu_search);
+        this.newsFeedButton = this.parentActivity.findViewById(R.id.menu_news_feed);
         this.profileButton = this.parentActivity.findViewById(R.id.menu_profile);
 
         final FragmentAwareActivity parent = this.parentActivity;
@@ -46,6 +48,12 @@ public class MenuFragment extends IntegratedFragment {
             @Override
             public void onClick(View v) {
                 parent.SetFragment(new UsersSearchFragment());
+            }
+        });
+        newsFeedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parent.SetFragment(parent.GetNewsFeedImageGalleryFragment(parent.userSharedPref.getInt(getString(R.string.idKey),0)));
             }
         });
         profileButton.setOnClickListener(new View.OnClickListener() {

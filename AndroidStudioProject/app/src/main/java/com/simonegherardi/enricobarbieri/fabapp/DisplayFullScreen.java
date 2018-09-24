@@ -8,6 +8,7 @@ import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.IResourceConsumer;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceFlyweightAsync;
 import com.simonegherardi.enricobarbieri.fabapp.flyweightasync.ResourceResponse;
@@ -16,7 +17,7 @@ import com.simonegherardi.enricobarbieri.fabapp.resources.Image;
 public class DisplayFullScreen extends AppCompatActivity implements IResourceConsumer {
     private Context context;
     private int idImage;
-    private ImageView fsImage;
+    private PhotoView fsImage;
 
     public DisplayFullScreen()
     {
@@ -27,7 +28,7 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_full_screen);
-        fsImage = (ImageView) findViewById(R.id.fullscreenImage);
+        fsImage = (PhotoView) findViewById(R.id.fullscreenImage);
         context = getApplicationContext();
         Bundle b = getIntent().getExtras();
         idImage = b.getInt("image_id");

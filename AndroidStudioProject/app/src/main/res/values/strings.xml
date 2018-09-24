@@ -37,4 +37,6 @@
     <string name="profile_button">profile button</string>
     <string name="search_button">search button</string>
     <string name="imageUploadInfo">imageUploadInfo</string>
+    <string name="accept">Accept</string>
+    <string name="news_feed_button">News feed button</string>
 </resources>
