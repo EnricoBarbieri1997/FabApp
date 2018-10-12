@@ -8,6 +8,7 @@
     tools:context=".DisplayFullScreen"
     android:background="@color/colorWhite">
 
+
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/fullscreenImage"
         android:layout_width="wrap_content"
@@ -16,6 +17,17 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:scaleType="fitCenter"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorWhite">
+    </com.github.chrisbanes.photoview.PhotoView>
+
+
+    <TextView
+        android:id="@+id/fullscreenPhotographer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fullscreenImage"
+        android:layout_centerHorizontal="true"
+        android:text="Barbuz è il migliore"
+        />
 
 </RelativeLayout>

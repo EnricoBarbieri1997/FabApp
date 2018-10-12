@@ -48,6 +48,22 @@ public class ResourceFlyweightAsync implements IRESTable{
         }
         return response;
     }
+    public ResourceResponse GetSingleUser(Integer id, ResourceResponse response, IResourceConsumer callback)
+    {
+        response.SetResourceType(ResourcesTypes.SingleUser);
+        if(this.resources.containsKey(id))
+        {
+            response.SetResource(this.resources.get(id));
+            callback.OnResourceReady(response);
+        }
+        else
+        {
+            RESTResponse resp = WebServer.Main().GenericRequest(HttpMethod.GET, Table.SingleUser, "id",id.toString(), this);
+            this.requestsCallbacks.put(resp, callback);
+            this.requestsResponses.put(resp, response);
+        }
+        return response;
+    }
 
     public ResourceResponse GetGroup(Integer id, IResourceConsumer callback)
     {
@@ -70,6 +86,22 @@ public class ResourceFlyweightAsync implements IRESTable{
     public ResourceResponse GetPhoto(Integer id, IResourceConsumer callback)
     {
         ResourceResponse response = new ResourceResponse();
+        response.SetResourceType(ResourcesTypes.Image);
+        if(this.resources.containsKey(id))
+        {
+            response.SetResource(this.resources.get(id));
+            callback.OnResourceReady(response);
+        }
+        else
+        {
+            RESTResponse resp = WebServer.Main().GenericRequest(HttpMethod.GET, Table.Image, "id",id.toString(), this);
+            this.requestsCallbacks.put(resp, callback);
+            this.requestsResponses.put(resp, response);
+        }
+        return response;
+    }
+    public ResourceResponse GetPhoto(Integer id, ResourceResponse response, IResourceConsumer callback)
+    {
         response.SetResourceType(ResourcesTypes.Image);
         if(this.resources.containsKey(id))
         {
