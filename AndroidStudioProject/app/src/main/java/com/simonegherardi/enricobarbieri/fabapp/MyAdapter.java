@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<CreateList> galleryList;
+
     private Context context;
 
     public MyAdapter(Context context, ArrayList<CreateList> galleryList) {
@@ -40,7 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final MyAdapter.ViewHolder viewHolder, int i) {
-        final int id = galleryList.get(i).getImage_ID();
+        final int photoid = galleryList.get(i).getImage_ID();
         viewHolder.title.setText(galleryList.get(i).getImage_title());
         viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Glide
@@ -52,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayFullScreen(id);
+                displayFullScreen(photoid);
             }
         });
     }

@@ -3,9 +3,14 @@ package com.simonegherardi.enricobarbieri.fabapp;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -20,6 +25,8 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
     private int idImage;
     private PhotoView fsImage;
     private TextView photographer;
+    private CharSequence photographerName;
+    private CharSequence photographedName;
     private ResourceResponse photoid;
     private ResourceResponse userid;
 
@@ -28,6 +35,22 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
         super();
     }
 
+
+    public void displayToast()
+    {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) findViewById(R.id.custom_toast_container));
+
+        TextView text = (TextView) layout.findViewById(R.id.photographedName);
+        text.setText(this.photographedName);
+
+        Toast toast = new Toast(getApplicationContext());
+        //toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +63,13 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
 
         photoid = new ResourceResponse();
         ResourceFlyweightAsync.Main().GetPhoto(idImage, photoid, this);
+
+        fsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            displayToast();
+            }
+        });
 
     }
 
@@ -55,8 +85,9 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
             ResourceFlyweightAsync.Main().GetSingleUser(image.GetPhotographed(), userid, this);
         }
         if (userid == response) {
-           SingleUser user = (SingleUser) response.GetResource();
-           this.photographer.setText(user.GetUsername());
+           SingleUser photographed = (SingleUser) response.GetResource();
+           this.photographedName = photographed.GetUsername();
+           this.displayToast();
         }
     }
 }

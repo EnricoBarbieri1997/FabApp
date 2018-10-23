@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="67" />
+                                                <entry key="scalingPercent" value="51" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -35,10 +35,10 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="f9edff" />
-                                      <entry key="backgroundLayerName" value="ic_charmander" />
-                                      <entry key="foregroundImage" value="C:\Users\Simo\Desktop\brazzers\Pokèmon_images\004Charmander_OS_anime.png" />
-                                      <entry key="foregroundLayerName" value="charmander" />
-                                      <entry key="outputName" value="img1" />
+                                      <entry key="backgroundLayerName" value="ic_photographed" />
+                                      <entry key="foregroundImage" value="C:\Users\Simo\Desktop\FabApp\photographed_photo.png" />
+                                      <entry key="foregroundLayerName" value="photographed" />
+                                      <entry key="outputName" value="photographed_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>

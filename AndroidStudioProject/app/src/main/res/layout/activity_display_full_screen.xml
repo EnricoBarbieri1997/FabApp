@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DisplayFullScreen"
-    android:background="@color/colorWhite">
+    android:background="@color/colorBlack">
 
 
     <com.github.chrisbanes.photoview.PhotoView
@@ -20,14 +20,13 @@
         android:background="@color/colorWhite">
     </com.github.chrisbanes.photoview.PhotoView>
 
-
     <TextView
-        android:id="@+id/fullscreenPhotographer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fullscreenImage"
-        android:layout_centerHorizontal="true"
-        android:text="Barbuz è il migliore"
-        />
+    android:id="@+id/fullscreenPhotographer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/fullscreenImage"
+    android:layout_centerHorizontal="true"
+    android:text=""
+    />
 
 </RelativeLayout>
