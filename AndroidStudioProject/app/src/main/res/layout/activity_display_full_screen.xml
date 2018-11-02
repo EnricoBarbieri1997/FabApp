@@ -20,13 +20,4 @@
         android:background="@color/colorWhite">
     </com.github.chrisbanes.photoview.PhotoView>
 
-    <TextView
-    android:id="@+id/fullscreenPhotographer"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/fullscreenImage"
-    android:layout_centerHorizontal="true"
-    android:text=""
-    />
-
 </RelativeLayout>

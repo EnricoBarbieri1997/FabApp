@@ -14,12 +14,14 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.simonegherardi.enricobarbieri.fabapp.R;
 import com.simonegherardi.enricobarbieri.fabapp.fragments.ImageGalleryFragment;
+import com.simonegherardi.enricobarbieri.fabapp.fragments.MenuFragment;
 import com.simonegherardi.enricobarbieri.fabapp.resources.Image;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
@@ -53,6 +55,8 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
 
         setContentView(R.layout.activity_profile);
         Bundle b = getIntent().getExtras();
+        //this.container = R.id.profile_menu;
+        //this.AddFragment(new MenuFragment());
         int value = 0; // or other values
         if(b != null) {
             userId = value = b.getInt(getString(R.string.idKey));
@@ -66,6 +70,7 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
         this.container = R.id.profile_gallery;
         galleryFragment = (ImageGalleryFragment) this.GetProfileGalleryFragment(value);
         this.SetFragment(galleryFragment);
+        // galleryFragment.getRecyclerView().setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
 
         progressBar = this.findViewById(R.id.image_upload_progress);
         button = this.findViewById(R.id.addImageButton);
@@ -228,7 +233,7 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
             Image image = new Image();
             image.SetUrl(url);
             image.SetPhotographed(userId);
-            image.SetPhotographer(0);
+            image.SetPhotographer(this.userSharedPref.getInt(getString(R.string.idKey),0));
             ResourceSynchronizer is = new ResourceSynchronizer(image, this);
             is.Upload();
         }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<CreateList> galleryList;
+    ArrayList<Integer> photoIdsArray = new ArrayList<Integer>();
 
     private Context context;
 
@@ -36,11 +37,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     {
         final Intent fullscreen = new Intent(context , DisplayFullScreen.class);
         fullscreen.putExtra("image_id",id_photo);
+        fullscreen.putExtra("photoIdsArray",photoIdsArray);
         context.startActivity(fullscreen);
     }
 
     @Override
     public void onBindViewHolder(final MyAdapter.ViewHolder viewHolder, int i) {
+        for (int j = 0; j<galleryList.size(); j++)
+        {
+            photoIdsArray.add(galleryList.get(j).getImage_ID());
+        }
+
         final int photoid = galleryList.get(i).getImage_ID();
         viewHolder.title.setText(galleryList.get(i).getImage_title());
         viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -49,6 +56,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 .load(galleryList.get(i).getImage_ID())
                 .thumbnail(0.1f)
                 .into(viewHolder.img);
+
+
 
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override

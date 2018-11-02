@@ -36,6 +36,11 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
     public SwipeRefreshLayout imageRefresh;
     public UserImageRequester imageRequester;
 
+
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,7 +124,7 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
         }
         catch (Exception e1)
         {
-            ArrayList<Integer> ids = new ArrayList<>();
+            ArrayList<Integer> ids = new ArrayList<Integer>();
             while(imagesId.HasNext())
             {
                 try {

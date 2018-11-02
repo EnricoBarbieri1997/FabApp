@@ -22,7 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayFullScreen" />
-        <activity android:name=".PersonalProfileActivity" />
         <activity android:name=".SetPersonalDataActivity" />
         <activity android:name=".PersonalDataActivity" />
         <activity android:name=".activity.FragmentAwareActivity" />

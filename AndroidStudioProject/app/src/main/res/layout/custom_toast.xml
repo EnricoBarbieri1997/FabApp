@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="8dp"
-    android:background="#DAAA"
+    android:background="@drawable/customed_toast_backgroud"
     >
     <ImageView android:src="@mipmap/photographed_icon"
         android:id="@+id/photographedIcon"
@@ -25,6 +25,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="1dp"
         />
 
     <TextView android:id="@+id/photographerName"
