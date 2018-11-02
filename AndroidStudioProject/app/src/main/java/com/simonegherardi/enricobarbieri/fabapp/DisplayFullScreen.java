@@ -89,7 +89,7 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
 
     public void swipeLeft()
     {
-        if(this.idImage == this.photoIdsArray.get(this.photoIdsArray.size()))
+        if(this.idImage == this.photoIdsArray.get(this.photoIdsArray.size()-1))
         {
             return;
         }
@@ -106,7 +106,7 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
         }
         int currentIndex = photoIdsArray.indexOf(this.idImage);
 
-        displayFullScreen(this.photoIdsArray.get(currentIndex+1),this.photoIdsArray);
+        displayFullScreen(this.photoIdsArray.get(currentIndex-1),this.photoIdsArray);
     }
 
 
@@ -132,10 +132,10 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
                 int height = displayMetrics.heightPixels;
                 int width = displayMetrics.widthPixels;
                 if (x < 0.20*width) {
-                    swipeLeft();
+                    swipeRight();
                 }
                 if (x > 0.80*width) {
-                    swipeRight();
+                    swipeLeft();
                 }
                 if (x <= 0.80*width && x >= 0.20*width) {
                     displayToast();
