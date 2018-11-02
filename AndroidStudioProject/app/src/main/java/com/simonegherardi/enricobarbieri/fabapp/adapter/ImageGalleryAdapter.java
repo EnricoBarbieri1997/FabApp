@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapter.ImageViewHolder>
 {
     private ArrayList<Image> galleryList;
+    ArrayList<Integer> photoIdsArray = new ArrayList<Integer>();
     private Context context;
     private Activity activity;
 
@@ -33,7 +34,13 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
         this.activity = (Activity)context;
         this.context = context;
     }
-
+    private void GenerateIdsArray()
+    {
+        for (int j = 0; j<galleryList.size(); j++)
+        {
+            photoIdsArray.add(galleryList.get(j).GetId());
+        }
+    }
     @Override
     public ImageGalleryAdapter.ImageViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell_layout, viewGroup, false);
@@ -45,7 +52,9 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
     public void displayFullScreen(int id_photo)
     {
         final Intent fullscreen = new Intent(context , DisplayFullScreen.class);
+        GenerateIdsArray();
         fullscreen.putExtra("image_id",id_photo);
+        fullscreen.putExtra("photoIdsArray",photoIdsArray);
         this.activity.startActivity(fullscreen);
     }
 

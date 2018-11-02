@@ -34,11 +34,11 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="f9edff" />
-                                      <entry key="backgroundLayerName" value="ic_photographed" />
-                                      <entry key="foregroundImage" value="C:\Users\Simo\Desktop\FabApp\photographed_photo.png" />
-                                      <entry key="foregroundLayerName" value="photographed" />
-                                      <entry key="outputName" value="photographed_icon" />
+                                      <entry key="backgroundColor" value="faffff" />
+                                      <entry key="backgroundLayerName" value="ic_main" />
+                                      <entry key="foregroundImage" value="C:\Users\Simo\Desktop\if_26.Camera-Back_290124_colored.png" />
+                                      <entry key="foregroundLayerName" value="main" />
+                                      <entry key="outputName" value="main_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>

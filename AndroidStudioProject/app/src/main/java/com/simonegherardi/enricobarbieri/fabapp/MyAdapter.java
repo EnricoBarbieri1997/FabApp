@@ -23,6 +23,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public MyAdapter(Context context, ArrayList<CreateList> galleryList) {
         this.galleryList = galleryList;
+
+        for (int j = 0; j<galleryList.size(); j++)
+        {
+            photoIdsArray.add(galleryList.get(j).getImage_ID());
+        }
+
         this.context = context;
     }
 
@@ -43,10 +49,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final MyAdapter.ViewHolder viewHolder, int i) {
-        for (int j = 0; j<galleryList.size(); j++)
-        {
-            photoIdsArray.add(galleryList.get(j).getImage_ID());
-        }
 
         final int photoid = galleryList.get(i).getImage_ID();
         viewHolder.title.setText(galleryList.get(i).getImage_title());

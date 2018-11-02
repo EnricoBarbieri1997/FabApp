@@ -39,4 +39,7 @@
     <string name="imageUploadInfo">imageUploadInfo</string>
     <string name="accept">Accept</string>
     <string name="news_feed_button">News feed button</string>
+    <string name="prev">Prev</string>
+    <string name="info">Info</string>
+    <string name="next">Next</string>
 </resources>
