@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import com.simonegherardi.enricobarbieri.fabapp.R;
 import com.simonegherardi.enricobarbieri.fabapp.fragments.ImageGalleryFragment;
 import com.simonegherardi.enricobarbieri.fabapp.fragments.MenuFragment;
+import com.simonegherardi.enricobarbieri.fabapp.fragments.ProfileFragment;
 import com.simonegherardi.enricobarbieri.fabapp.resources.Image;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.HttpMethod;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
@@ -47,6 +48,7 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
     private ProgressBar progressBar;
     String mCurrentPhotoPath;
     ImageGalleryFragment galleryFragment;
+    ProfileFragment profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,7 +68,8 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
             isUser = true;
         }
         this.container = R.id.profile_info;
-        this.SetFragment(this.GetProfileInfoFragment(value));
+        profileFragment = (ProfileFragment) this.GetProfileInfoFragment(value);
+        this.SetFragment(profileFragment);
         this.container = R.id.profile_gallery;
         galleryFragment = (ImageGalleryFragment) this.GetProfileGalleryFragment(value);
         this.SetFragment(galleryFragment);
@@ -224,6 +227,18 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
                 matrix, true);
     }
+
+    public void SetProfileImage()
+    {
+        this.profileFragment.SetProfileImage(this.galleryFragment.GetLastPhoto());
+    }
+
+    @Override
+    public void OnGalleryReady()
+    {
+        this.SetProfileImage();
+    }
+
     @Override
     public void Success(RESTResponse response) {
         if(response == imageResponse)
@@ -303,4 +318,5 @@ public class ProfileActivity extends FragmentAwareActivity implements IRESTable,
     public void DeleteComplete(boolean result) {
 
     }
+
 }

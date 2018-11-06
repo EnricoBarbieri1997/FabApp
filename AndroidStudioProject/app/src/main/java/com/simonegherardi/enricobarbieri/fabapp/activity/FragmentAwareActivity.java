@@ -121,4 +121,9 @@ public abstract class FragmentAwareActivity extends FragmentActivity {
         Intent intent = new Intent(this.getApplicationContext(), BoardActivity.class);
         return intent;
     }
+
+    public void OnGalleryReady()
+    {
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.simonegherardi.enricobarbieri.fabapp.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -174,6 +175,22 @@ public class ProfileFragment extends IntegratedFragment implements IResourceCons
         }
 
         ResourceFlyweightAsync.Main().GetSingleUser(this.userId, this);
+    }
+
+    public void SetProfileImage(final Image photo)
+    {
+        final Context context = this.getContext();
+        final ImageView profileImage = this.picture;
+        this.parentActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Glide
+                        .with(context)
+                        .load(photo.GetUrl())
+                        .into(profileImage);
+            }
+        });
+
     }
 
     @Override

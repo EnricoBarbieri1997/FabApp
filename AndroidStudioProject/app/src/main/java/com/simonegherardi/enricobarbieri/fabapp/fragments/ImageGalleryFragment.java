@@ -80,6 +80,10 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
     }
 
 
+    public Image GetLastPhoto()
+    {
+        return imageList.get(0);
+    }
 
     @Override
     public void OnResourceReady(ResourceResponse response)
@@ -91,6 +95,7 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
             imageList.insertSorted(image);
         }
         if(imageCount <= 0) {
+            this.parentActivity.OnGalleryReady();
             SetRefreshing(false);
             UpdateRecyclerView(adapter);
         }
@@ -141,6 +146,7 @@ public class ImageGalleryFragment extends IntegratedFragment implements IResourc
             }
         }
     }
+
 
     public void SetRefreshing(final boolean status)
     {
