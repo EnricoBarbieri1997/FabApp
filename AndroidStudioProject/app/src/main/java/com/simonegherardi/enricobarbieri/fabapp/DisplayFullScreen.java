@@ -68,15 +68,20 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
 
     public void displayInstructionToast()
     {
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_toast_instructions,
-                (ViewGroup) findViewById(R.id.custom_toast_instructions));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.custom_toast_instructions,
+                        (ViewGroup) findViewById(R.id.custom_toast_instructions));
 
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.BOTTOM, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setView(layout);
-        toast.show();
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.BOTTOM, 0, 0);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setView(layout);
+                toast.show();
+            }
+        });
     }
 
     public void displayFullScreen(int id_photo, ArrayList<Integer> photoIdsArray)
@@ -85,6 +90,15 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
         fullscreen.putExtra("image_id",id_photo);
         fullscreen.putExtra("photoIdsArray",photoIdsArray);
         context.startActivity(fullscreen);
+        this.finish();
+        /*idImage = id_photo;
+        GetMainImage();*/
+    }
+
+    private void GetMainImage()
+    {
+        photoid = new ResourceResponse();
+        ResourceFlyweightAsync.Main().GetPhoto(idImage, photoid, this);
     }
 
     public void swipeLeft()
@@ -121,8 +135,7 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
         idImage = b.getInt("image_id");
         photoIdsArray = b.getIntegerArrayList("photoIdsArray");
 
-        photoid = new ResourceResponse();
-        ResourceFlyweightAsync.Main().GetPhoto(idImage, photoid, this);
+        GetMainImage();
 
         fsImage.setOnViewTapListener(new OnViewTapListener() {
             @Override
@@ -148,11 +161,19 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
     @Override
     public void OnResourceReady(ResourceResponse response) {
         if (photoid == response) {
-            Image image = (Image) response.GetResource();
-            Glide
-                    .with(context)
-                    .load(image.GetUrl())
-                    .into(fsImage);
+            this.photographedName = "loading...";
+            this.photographerName = "loading...";
+            final Image image = (Image) response.GetResource();
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Glide.with(context).clear(fsImage);
+                    Glide
+                            .with(context)
+                            .load(image.GetUrl())
+                            .into(fsImage);
+                }
+            });
             photographed = new ResourceResponse();
             ResourceFlyweightAsync.Main().GetSingleUser(image.GetPhotographed(), photographed, this);
             photographer = new ResourceResponse();
@@ -171,6 +192,8 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
         }
         if(photographerReady == true && photographedReady == true && toast_showed == false)
         {
+            this.photographedReady = false;
+            this.photographerReady = false;
             toast_showed = true;
             displayInstructionToast();
         }
