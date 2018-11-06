@@ -44,7 +44,7 @@ public class ProfileFragment extends IntegratedFragment implements IResourceCons
     private TextView email;
     private Button friendButton;
     private ImageView pendingFriendRequestsButton;
-    private boolean friendRequestSended ;
+    private boolean friendRequestSended;
     private boolean friendRequestAccepted;
     private int followResponseReceived = 0;
 

@@ -39,6 +39,7 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
     private ResourceResponse photographed;
     private boolean photographerReady = false;
     private boolean photographedReady = false;
+    private boolean toast_showed = false;
 
     public DisplayFullScreen()
     {
@@ -73,7 +74,6 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
 
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.BOTTOM, 0, 0);
-        toast.setGravity(Gravity.FILL_HORIZONTAL, 0,0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
@@ -169,32 +169,10 @@ public class DisplayFullScreen extends AppCompatActivity implements IResourceCon
             this.photographerName = photographer.GetUsername();
             this.photographerReady = true;
         }
-        if(photographerReady == true && photographedReady == true)
+        if(photographerReady == true && photographedReady == true && toast_showed == false)
         {
-            //displayInstructionToast();
-/*            DisplayMetrics displayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int height = displayMetrics.heightPixels;
-            int width = displayMetrics.widthPixels;
-
-
-            Context context = getApplicationContext();
-            CharSequence textPrev = "Prev";
-            CharSequence textNext = "Next";
-            CharSequence textInfo = "Info";
-
-            Toast toastPrev = Toast.makeText(context, textPrev, 0);
-            toastPrev.setGravity(Gravity.BOTTOM, -width/3, height/10);
-            toastPrev.show();
-
-            Toast toastNext = Toast.makeText(context, textNext, 0);
-            toastNext.setGravity(Gravity.BOTTOM, width/3, height/10);
-            toastNext.show();
-
-            Toast toastInfo = Toast.makeText(context, textInfo, 0);
-            toastInfo.setGravity(Gravity.BOTTOM, 0, height/10);
-            toastInfo.show();
-*/
+            toast_showed = true;
+            displayInstructionToast();
         }
     }
 }
