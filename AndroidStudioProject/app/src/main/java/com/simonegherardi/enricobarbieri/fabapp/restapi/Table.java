@@ -15,7 +15,8 @@ public enum Table {
     userFriendsImageId("userFriendsImageId"),
     userSearchList("userSearchList"),
     pendingFriendRequests("pendingFriendRequests"),
-    upload("upload");
+    upload("upload"),
+    connect("connect");
 
     private String table;
 

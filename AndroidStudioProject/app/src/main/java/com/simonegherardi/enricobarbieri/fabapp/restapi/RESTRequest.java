@@ -9,6 +9,9 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -21,6 +24,7 @@ public class RESTRequest implements Runnable
     private String body;
     private String url;
     private String method;
+    private Map<String, String> additionalHeaders = new HashMap<>();
     private IRESTable callback;
     private RESTResponse response;
     String contentType = "application/x-www-form-urlencoded";
@@ -57,6 +61,10 @@ public class RESTRequest implements Runnable
     public void setCallback(IRESTable callback) {
         this.callback = callback;
     }
+    public void AddHeader(String key, String value)
+    {
+        this.additionalHeaders.put(key, value);
+    }
 
     @Override
     public void run() {
@@ -68,6 +76,9 @@ public class RESTRequest implements Runnable
             URL url = new URL(targetURL);
             connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod(method);
+            for (Map.Entry<String,String> entry:additionalHeaders.entrySet()) {
+                connection.setRequestProperty(entry.getKey(), entry.getValue());
+            }
             if(!method.equals(HttpMethod.GET.GetMethod()))
             {
                 connection.setRequestProperty("Content-Type",
@@ -96,10 +107,13 @@ public class RESTRequest implements Runnable
                 response.append(line);
                 response.append(System.getProperty("line.separator"));
             }
-            response.deleteCharAt(response.length()-1);
+            if(response.length() > 0) {
+                response.deleteCharAt(response.length() - 1);
+            }
             rd.close();
             //return response.toString();
             String result = response.toString();
+            this.response.SetHeaders(connection.getHeaderFields());
             this.response.SetResponse(result);
             this.callback.Success(this.response);
         } catch (Exception e) {

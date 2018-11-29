@@ -14,6 +14,7 @@ import com.simonegherardi.enricobarbieri.fabapp.MainActivity;
 import com.simonegherardi.enricobarbieri.fabapp.R;
 import com.simonegherardi.enricobarbieri.fabapp.activity.FragmentAwareActivity;
 import com.simonegherardi.enricobarbieri.fabapp.resources.SingleUser;
+import com.simonegherardi.enricobarbieri.fabapp.restapi.IRESTable;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.ISyncObserver;
 import com.simonegherardi.enricobarbieri.fabapp.restapi.ResourceSynchronizer;
 
@@ -59,13 +60,6 @@ public class SignUpFragment extends IntegratedFragment implements ISyncObserver{
                 register.setClickable(false);
             }
         });
-
-        int userId = this.parentActivity.userSharedPref.getInt(getString(R.string.idKey),0);
-        if(userId != 0)
-        {
-            parentActivity.startActivity(this.parentActivity.GetBoardActivity());
-            parentActivity.finish();
-        }
     }
 
     @Override
